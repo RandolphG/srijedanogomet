@@ -64,6 +64,7 @@ var drawChart = function(){
 
     // Create function for the line transition
     var tweenDash = function()  {
+        console.log(`this`,this)
         const l = this.getTotalLength(),
             i = d3.interpolateString("0," + l, l + "," + l);
         return function(t) { return i(t) };

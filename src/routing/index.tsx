@@ -7,18 +7,14 @@ import {
 } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import {
-    SignIn,
-    Navbar,
-    UserAvatar,
-    CookieStorage,
-    ContextMenu, AnimatedLine,
+  Navbar,
+  UserAvatar,
+  CookieStorage,
+  ContextMenu,
+  AnimatedLine,
+  PlayerStats,
 } from "../components";
-import {
-  DashboardPage,
-  AboutPage,
-  FrontPage,
-  BoardMembersPage,
-} from "../pages";
+import { DashboardPage, FrontPage } from "../pages";
 import { AppRouting, NonAuthRoute, NotFound, PrivateRoute } from "./components";
 
 /**
@@ -40,18 +36,14 @@ const AppRouter: FC = () => {
                   <Route exact path="/" component={renderRootRedirect} />
                   <PrivateRoute path="/app" component={AppRouting} />
                   <Route path="/non-auth" component={NonAuthRoute} />
-                  <Route
-                    exact
-                    path="/animatedLine"
-                    component={AnimatedLine}
-                  />
+                  <Route exact path="/playerStats" component={PlayerStats} />
+                  <Route exact path="/animatedLine" component={AnimatedLine} />
                   <Route exact path="/contextMenu" component={ContextMenu} />
                   <Route
                     exact
                     path="/dashboardPage"
                     component={DashboardPage}
                   />
-                  <Route exact path="/aboutPage" component={AboutPage} />
                   <Route exact path="/frontPage" component={FrontPage} />
                   <Route path="/404" component={NotFound} />
                   <Redirect to="/404" />
@@ -60,7 +52,6 @@ const AppRouter: FC = () => {
             />
             <Navbar />
             <UserAvatar />
-            <SignIn />
             <CookieStorage />
           </AnimatePresence>
         </Suspense>

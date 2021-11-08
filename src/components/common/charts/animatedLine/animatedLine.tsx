@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import * as d3 from "d3";
+import ErrorBoundary from "../../../errorBoundary";
+import "./styles/_animatedLineStyle.scss";
 
 /**
  * @description Animated Line
@@ -13,9 +15,9 @@ const AnimatedLine = () => {
       let fontSize = 35;
 
       /* SVG Size & Style */
-      const width = 600;
-      const height = 600;
-      const margin = 100 * 5;
+      const width = 350;
+      const height = 350;
+      const margin = 100 * 2;
       const innerWidth = width - margin;
       const innerHeight = height - margin;
       let bgColor = "None";
@@ -38,10 +40,8 @@ const AnimatedLine = () => {
         { key: dateFormat("2021-01-03"), value: 4 },
         { key: dateFormat("2021-01-04"), value: 12 },
         { key: dateFormat("2021-01-05"), value: 9 },
-        { key: dateFormat("2021-01-06"), value: 15 },
-        { key: dateFormat("2021-01-07"), value: 24 },
-        { key: dateFormat("2021-01-08"), value: -12 },
-        { key: dateFormat("2021-01-09"), value: 3 },
+        { key: dateFormat("2021-01-06"), value: 14 },
+        { key: dateFormat("2021-01-07"), value: 18 },
       ];
 
       /* CREATE SVG */
@@ -67,7 +67,6 @@ const AnimatedLine = () => {
 
       const number = d3.max(data, (d: any) => d.value);
       const domain: any = [0, number];
-      console.log(`domain`, domain);
 
       let y = d3.scaleLinear().range([innerHeight, 0]).domain(domain);
 
@@ -80,9 +79,8 @@ const AnimatedLine = () => {
       /* Create function for the line transition */
       let tweenDash = () => {
         // @ts-ignore
-        // const l = document.getElementById("line-chart").getTotalLength()!;
-        const l: any = lineGroup.getTotalLength()!;
-        console.log(`length`, l);
+        // const l = document.getElementById("path").getTotalLength()!;
+        const l = 350;
         const i = d3.interpolateString("0," + l, l + "," + l);
         return (t: any) => i(t);
       };
@@ -158,9 +156,15 @@ const AnimatedLine = () => {
   });
 
   return (
-    <div id="line-chart-container">
-      <div id="line-chart" />
-    </div>
+    <ErrorBoundary>
+      <div className="animatedLineContainer">
+        <div className="animatedLineChart">
+          <div id="line-chart-container">
+            <div id="line-chart" />
+          </div>
+        </div>
+      </div>
+    </ErrorBoundary>
   );
 };
 

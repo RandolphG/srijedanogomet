@@ -1,0 +1,110 @@
+:root {
+  --canvas-color: #F2E0E6;
+  --card-color: #FFEDF3;
+  --accent-color: #3A141F;
+  --primary-text-color: #724252;
+  --primary-text-color-light: #AA8792;
+  --secondary-text-color: #EECFD9;
+}
+
+.playerContainer {
+  font-family: "DM Sans", "Inter", sans-serif;
+  background-color: var(--canvas-color);
+}
+
+.player {
+  width: 650px;
+  height: 230px;
+  border-radius: 16px;
+  box-shadow: 0 15px 30px rgba(#3A141F, .1);
+  position: relative;
+  background-color: var(--card-color);
+  display: flex;
+  flex-shrink: 1;
+}
+
+.player-info {
+  padding: 4rem 0 0 2.75rem;
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 1;
+  position: relative;
+
+}
+
+.player-name {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: var(--primary-text-color);
+
+}
+
+.player-team {
+  font-size: 1.125rem;
+  font-weight: 400;
+  color: var(--primary-text-color-light);
+  display: block;
+  margin-bottom: .5rem;
+  text-transform: uppercase;
+}
+
+.player-stats {
+  border-radius: 16px;
+  background-color: var(--accent-color);
+  box-shadow: 15px 15px 30px rgba(#3A141F, .1);
+  width: 350px;
+  position: absolute;
+  left: -40px;
+  bottom: -30px;
+  display: flex;
+  justify-content: space-between;
+  padding: 1.25rem 2.5rem;
+}
+
+.player-stat {
+  font-size: .75rem;
+  color: var(--secondary-text-color);
+  text-transform: uppercase;
+}
+
+.player-stat-number {
+  margin-top: .375rem;
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--secondary-text-color);
+}
+.player-image {
+  display: flex;
+  position: relative;
+  width: 280px;
+  img {
+    display: block;
+    position: absolute;
+    width: 400px;
+    left: -80px;
+    bottom: 0;
+  }
+}
+
+.captain-badge {
+  width: 3rem;
+  height: 3rem;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #FFF;
+  border-radius: 50%;
+  font-weight: 700;
+  color: var(--primary-text-color);
+  box-shadow: 3px 5px 10px 0 rgba(#3A141F,.15);
+  right: 1.25rem;
+  bottom: 1.25rem;
+  position: absolute;
+}
+
+.playerStatsContainer {
+  &>* {
+    margin: 300px auto;
+  }
+}

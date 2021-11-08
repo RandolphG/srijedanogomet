@@ -66,6 +66,10 @@ var drawChart = function(){
     var tweenDash = function()  {
         const l = this.getTotalLength(),
             i = d3.interpolateString("0," + l, l + "," + l);
+
+            console.log(`this`,this)
+            console.log(`i`,i)
+            console.log(`l`,l)
         return function(t) { return i(t) };
     }
     

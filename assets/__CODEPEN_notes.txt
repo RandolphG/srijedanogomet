@@ -91,3 +91,6 @@ FAMILTY TREE :
 	★ Simpson Family Tree : https://codepen.io/zingchart/details/bzeRWWdribbble.com/tags/codepen
 
 WEBSITE INSPIRATIONS : http://opencontinents.com/about/?stars=1
+
+D3 RESCOURCES :
+    https://wattenberger.com/blog/react-and-d3
