@@ -1,0 +1,15 @@
+.animafiLogo {
+  color: white;
+  font-size: 2.5rem;
+  font-weight: bolder;
+  position: absolute;
+  background: transparent;
+  z-index: 1000;
+  height: 340px;
+  left: 45%;
+  top: 3.25rem;
+
+  @media screen and (max-width: 1550px) {
+    display: none;
+  }
+}

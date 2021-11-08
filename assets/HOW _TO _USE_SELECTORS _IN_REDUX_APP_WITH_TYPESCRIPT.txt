@@ -1,0 +1,29 @@
+HOW TO USE SELECTORS IN REDUX APP WITH TYPESCRIPT?
+
+?An example with more types:
+
+Describe types
+type TPostData = {
+  type: string;
+};
+
+type TPostsState = TPostData[];
+
+type TState = {
+  posts: TPostsState;
+};
+
+Create selectors
+// get all posts
+export const selectPosts = (state: TState): TPostsState => state.posts;
+
+// get new posts
+export const selectNewPosts = createSelector<
+  TState,
+  TPostsState,
+  TPostData[]>(
+    selectPosts,
+    (posts) => posts.filter(({ type }) => type === 'new'),
+  );
+  
+Result: You've got all posts with type parameter 'new'.

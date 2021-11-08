@@ -1,0 +1,154 @@
+$black: #000000;
+$highlight: #b0d121;
+$normalText: #fff;
+$subText: #aaa;
+$amount: gold;
+
+@keyframes ticker{
+0% {
+  transform: translateX(0);
+}
+
+100% {
+  transform: translateX(-1224px);
+}
+
+}
+
+div#flyoutContainer {
+  z-index: 100;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 26px;
+
+  div#tickerContainer {
+    background-color: $black;
+    border-bottom: solid $highlight 1px;
+    border-top: solid $highlight 1px;
+    width: 100%;
+
+    div#ticker {
+      position: relative;
+      height: 54px;
+
+      h1 {
+        display: inline-block;
+        position: absolute;
+        background-color: $black;
+        color: #b0d121;
+        z-index: 2;
+        padding: 0 10px 0 10px;
+        border-right: dotted #aaa 1px;
+        margin: 8px 0 !important;
+      }
+
+      div.ticker-content {
+        z-index: 1;
+        position: absolute;
+        left: 270px;
+        line-height: 54px;
+
+        ul {
+          font-family: Arial, Helvetica, sans-serif;
+          font-size: 12pt;
+          display: inline-block;
+          white-space: nowrap;
+          width: 10000px;
+          /*
+            animation-iteration-count: infinite;
+             animation-timing-function: linear;
+          animation-name: ticker;
+          animation-duration:25s; */
+          padding: 0;
+          margin: 0;
+          color: $highlight;
+
+          &:hover {
+            animation-play-state: paused;
+          }
+
+          li {
+            padding-left: 10px;
+            list-style-position: inside;
+            float: left;
+
+            span {
+              padding-right: 5px;
+
+              &:last-child {
+                padding-right: 0;
+              }
+            }
+
+            .eventDate, .eventLocation {
+              color: $subText;
+            }
+
+            .amount {
+              color: $amount;
+            }
+
+            .eventName {
+              color: $normalText;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  div#Event-Flyout {
+    z-index: 200;
+    width: 540px;
+    display: none;
+
+    > div {
+      padding: 0 10px;
+      background-color: $highlight;
+
+      h2 {
+        font-family: georgia;
+        font-size: 24pt;
+        margin: 0 0 10px 0;
+      }
+
+      > ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+          padding: 5px 0;
+          border-bottom: dotted 1px $black;
+
+          &:last-child {
+            border: none;
+          }
+
+          img {
+            padding-right: 5px;
+            margin-right: 5px;
+            border-right: dotted 1px $black;
+          }
+
+          > div {
+
+            padding: auto 0;
+          }
+        }
+      }
+    }
+  }
+
+  &:hover div#Event-Flyout {
+    & > div {
+
+    }
+
+    display: block;
+    z-index: 200;
+    max-height: 500px;
+  }
+}
+
