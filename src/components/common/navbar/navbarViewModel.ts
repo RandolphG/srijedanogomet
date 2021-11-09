@@ -33,12 +33,12 @@ export const NavbarViewModel = () => {
 
   const links = [
     { link: "Home", name: "" },
-    { link: "About", name: "aboutPage" },
-    { link: "Heritage", name: "404" },
-    { link: "Genealogy", name: "404" },
-    { link: "Donate", name: "404" },
-    { link: "Financials", name: "404" },
-    { link: "Projects", name: "404" },
+    { link: "Link", name: "aboutPage" },
+    { link: "Link", name: "404" },
+    { link: "Link", name: "404" },
+    { link: "Link", name: "404" },
+    { link: "Link", name: "404" },
+    { link: "Link", name: "404" },
   ];
 
   const motionSettings = {

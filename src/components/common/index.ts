@@ -5,3 +5,4 @@ export * from "./cookieStorage";
 export * from "./contextMenu";
 export * from "./charts";
 export { PlayerStats } from "./playerStats";
+export { TeamLineUp } from "./teamLineUp";

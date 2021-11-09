@@ -13,6 +13,7 @@ import {
   ContextMenu,
   AnimatedLine,
   PlayerStats,
+  TeamLineUp,
 } from "../components";
 import { DashboardPage, FrontPage } from "../pages";
 import { AppRouting, NonAuthRoute, NotFound, PrivateRoute } from "./components";
@@ -36,6 +37,7 @@ const AppRouter: FC = () => {
                   <Route exact path="/" component={renderRootRedirect} />
                   <PrivateRoute path="/app" component={AppRouting} />
                   <Route path="/non-auth" component={NonAuthRoute} />
+                  <Route exact path="/teamLineUp" component={TeamLineUp} />
                   <Route exact path="/playerStats" component={PlayerStats} />
                   <Route exact path="/animatedLine" component={AnimatedLine} />
                   <Route exact path="/contextMenu" component={ContextMenu} />
@@ -50,7 +52,7 @@ const AppRouter: FC = () => {
                 </Switch>
               )}
             />
-            <Navbar />
+            {/*<Navbar />*/}
             <UserAvatar />
             <CookieStorage />
           </AnimatePresence>
