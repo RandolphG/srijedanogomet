@@ -6,16 +6,8 @@ import {
   Switch,
 } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
-import {
-  Navbar,
-  UserAvatar,
-  CookieStorage,
-  ContextMenu,
-  AnimatedLine,
-  PlayerStats,
-  TeamLineUp,
-} from "../components";
-import { DashboardPage, FrontPage } from "../pages";
+import { UserAvatar, CookieStorage, Twitch } from "../components";
+import { DashboardPage, Glitch, StatisticPage } from "../pages";
 import { AppRouting, NonAuthRoute, NotFound, PrivateRoute } from "./components";
 
 /**
@@ -37,22 +29,28 @@ const AppRouter: FC = () => {
                   <Route exact path="/" component={renderRootRedirect} />
                   <PrivateRoute path="/app" component={AppRouting} />
                   <Route path="/non-auth" component={NonAuthRoute} />
-                  <Route exact path="/teamLineUp" component={TeamLineUp} />
-                  <Route exact path="/playerStats" component={PlayerStats} />
-                  <Route exact path="/animatedLine" component={AnimatedLine} />
-                  <Route exact path="/contextMenu" component={ContextMenu} />
+                  <Route exact path="/glitch" component={Glitch} />
+                  <Route
+                    exact
+                    path="/statisticsPage"
+                    component={StatisticPage}
+                  />
                   <Route
                     exact
                     path="/dashboardPage"
                     component={DashboardPage}
                   />
-                  <Route exact path="/frontPage" component={FrontPage} />
+                  <Route
+                    exact
+                    path="/statisticPage"
+                    component={StatisticPage}
+                  />
+                  <Route exact path="/twitch" component={Twitch} />
                   <Route path="/404" component={NotFound} />
                   <Redirect to="/404" />
                 </Switch>
               )}
             />
-            {/*<Navbar />*/}
             <UserAvatar />
             <CookieStorage />
           </AnimatePresence>

@@ -39,7 +39,7 @@ app.use(
 
 app.use(express.static("build"));
 
-const uri = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.f466e.gcp.mongodb.net/${process.env.MONGO_DB}?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://${process.env.REACT_MONGO_USER}:${process.env.REACT_APP_MONGO_PASSWORD}@cluster0.f466e.gcp.mongodb.net/${process.env.REACT_APP_MONGO_DB}?retryWrites=true&w=majority`;
 
 const options = { useNewUrlParser: true, useUnifiedTopology: true };
 

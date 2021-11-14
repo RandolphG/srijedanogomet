@@ -13,13 +13,14 @@
     ]
   },
   "dependencies": {
-    "@material-ui/core": "^4.8.0",
     "@reduxjs/toolkit": "^1.6.1",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
     "@testing-library/user-event": "^13.2.1",
+    "@types/chart.js": "^2.9.34",
     "animejs": "^3.2.1",
     "bcryptjs": "^2.4.3",
+    "chart.js": "^3.6.0",
     "classnames": "^2.3.1",
     "connected-react-router": "^6.9.1",
     "cors": "^2.8.5",
@@ -36,6 +37,7 @@
     "history": "^4.10.1",
     "i18next": "^21.2.4",
     "jquery": "^3.6.0",
+    "lettering": "^0.4.1",
     "lodash": "^4.17.21",
     "mongoose": "^6.0.12",
     "node-sass": "^5.0.0",
@@ -106,14 +108,7 @@
   "name": "nogomet",
   "nodemonConfig": {
     "restartable": "rs",
-    "verbose": true,
-    "env": {
-      "NODE_ENV": "development",
-      "MONGO_USER": "poplogics",
-      "MONGO_PASSWORD": "applewater",
-      "MONGO_DB": "nogomet",
-      "MONGO_COLLECTION": "nogometData"
-    }
+    "verbose": true
   },
   "private": true,
   "scripts": {

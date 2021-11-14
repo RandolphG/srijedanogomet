@@ -2,17 +2,17 @@ import { lazy } from "react";
 import { CustomRoute } from "../types/";
 
 // @ts-ignore
-const FrontPage = lazy(() => import("../pages/frontPage"));
+const GlitchEffect = lazy(() => import("../components/common/glitchEffect"));
 
-export const FRONT_PAGE_PATH = "/frontpage";
+export const GLITCH_EFFECT_PATH = "/twitch";
 
 /**
  * app  routes
  */
 export const appRoutes: CustomRoute[] = [
   {
-    path: FRONT_PAGE_PATH,
-    name: "FrontPage",
-    component: FrontPage,
+    path: GLITCH_EFFECT_PATH,
+    name: "GlitchEffect",
+    component: GlitchEffect,
   },
 ];

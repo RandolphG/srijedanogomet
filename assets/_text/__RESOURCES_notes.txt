@@ -1,0 +1,8 @@
+Using Chart.js in a function component with React hooks
+    https://dev.to/vcanales/using-chart-js-in-a-function-component-with-react-hooks-246l
+
+Guide to Charts in React
+    https://wizardly-gates-b3c3b3.netlify.app/
+
+How to print react-chartjs-2 bar chart in browser using functional component?
+    https://stackoverflow.com/questions/67604509/how-to-print-react-chartjs-2-bar-chart-in-browser-using-functional-component

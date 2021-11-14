@@ -164,13 +164,13 @@ const TeamLineUp = () => {
         <a href="#">Live</a>
       </li>
       <li className="scoreboard__nav-el is-active">
-        <a href="#">Line-up</a>
+        <a href="">Line-up</a>
       </li>
       <li className="scoreboard__nav-el">
-        <a href="#">Statistics</a>
+        <a href="">Statistics</a>
       </li>
       <li className="scoreboard__nav-el">
-        <a href="#">Comments</a>
+        <a href="">Comments</a>
       </li>
     </ul>
   );

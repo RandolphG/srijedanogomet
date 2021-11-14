@@ -1,0 +1,4 @@
+ADDING WORDS TO DICTIONARY FILE
+
+1. To add words to the file, open File Explorer, type %AppData%\Microsoft\Spelling.
+ 

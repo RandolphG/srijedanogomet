@@ -1,316 +1,424 @@
 import React from "react";
-import { logoAnimafi, photos } from "../../resources";
-import { DashboardPageViewModel } from "./dashboardPageViewModel";
 import "./styles/_dashboardStyles.scss";
+import { DashboardPageViewModel } from "./dashboardPageViewModel";
 
 /**
- * Dashboard Page
- * @constructor
+ * Dashboard page
  */
 const DashboardPage = () => {
-  const { payments, sideNavigationLinks, tiles, transfers } =
-    DashboardPageViewModel();
+  const { categories, products } = DashboardPageViewModel();
 
-  const cardType = [
-    {
-      className: "mastercard",
-      svg: (
-        <svg width="2001" height="1237" viewBox="0 0 2001 1237" fill="none">
-          <g id="a624784f2834e21c94a1c0c9a58bbbaa">
-            <path
-              id="7869b07bea546aa59a5ee138adbcfd5a"
-              d="M1270.57 1104.15H729.71V132.15H1270.58L1270.57 1104.15Z"
-              fill="currentColor"
-            />
-            <path
-              id="b54e3ab4d7044a9f288082bc6b864ae6"
-              d="M764 618.17C764 421 856.32 245.36 1000.08 132.17C891.261 46.3647 756.669 -0.204758 618.09 9.6031e-07C276.72 9.6031e-07 0 276.76 0 618.17C0 959.58 276.72 1236.34 618.09 1236.34C756.672 1236.55 891.268 1189.98 1000.09 1104.17C856.34 991 764 815.35 764 618.17Z"
-              fill="currentColor"
-            />
-            <path
-              id="67f94b4d1b83252a6619ed6e0cc0a3a1"
-              d="M2000.25 618.17C2000.25 959.58 1723.53 1236.34 1382.16 1236.34C1243.56 1236.54 1108.95 1189.97 1000.11 1104.17C1143.91 990.98 1236.23 815.35 1236.23 618.17C1236.23 420.99 1143.91 245.36 1000.11 132.17C1108.95 46.3673 1243.56 -0.201169 1382.15 -2.24915e-05C1723.52 -2.24915e-05 2000.24 276.76 2000.24 618.17"
-              fill="currentColor"
-            />
-          </g>
-        </svg>
-      ),
-    },
-    {
-      className: "visa",
-      svg: (
-        <svg width="2500" height="2500" viewBox="0 0 141.732 141.732">
-          <g fill="currentColor">
-            <path d="M62.935 89.571h-9.733l6.083-37.384h9.734zM45.014 52.187L35.735 77.9l-1.098-5.537.001.002-3.275-16.812s-.396-3.366-4.617-3.366h-15.34l-.18.633s4.691.976 10.181 4.273l8.456 32.479h10.141l15.485-37.385H45.014zM121.569 89.571h8.937l-7.792-37.385h-7.824c-3.613 0-4.493 2.786-4.493 2.786L95.881 89.571h10.146l2.029-5.553h12.373l1.14 5.553zm-10.71-13.224l5.114-13.99 2.877 13.99h-7.991zM96.642 61.177l1.389-8.028s-4.286-1.63-8.754-1.63c-4.83 0-16.3 2.111-16.3 12.376 0 9.658 13.462 9.778 13.462 14.851s-12.075 4.164-16.06.965l-1.447 8.394s4.346 2.111 10.986 2.111c6.642 0 16.662-3.439 16.662-12.799 0-9.72-13.583-10.625-13.583-14.851.001-4.227 9.48-3.684 13.645-1.389z" />
-          </g>
-          <path
-            d="M34.638 72.364l-3.275-16.812s-.396-3.366-4.617-3.366h-15.34l-.18.633s7.373 1.528 14.445 7.253c6.762 5.472 8.967 12.292 8.967 12.292z"
-            fill="currentColor"
+  const ProductRating = () => (
+    <div className="product-rating">
+      <svg width="192" height="192" fill="currentColor" viewBox="0 0 256 256">
+        <rect width="256" height="256" fill="none" />
+        <path d="M239.166,97.41117A16.37036,16.37036,0,0,0,224.63477,86.044l-59.39063-4.15625L143.21289,26.41117A16.33117,16.33117,0,0,0,127.99414,15.9971h-.01562A16.324,16.324,0,0,0,112.791,26.41117L90.43164,82.208,31.36914,86.044A16.37036,16.37036,0,0,0,16.83789,97.41117a16.68222,16.68222,0,0,0,5.15625,18.0625l45.4375,38.40625L53.916,207.044a18.37492,18.37492,0,0,0,7.01562,19.51562,17.83088,17.83088,0,0,0,20.0625.625l46.875-29.69531c.0625-.04687.125-.07812.26563,0l50.4375,31.95313a16.14026,16.14026,0,0,0,18.20312-.5625,16.64744,16.64744,0,0,0,6.35938-17.67969L188.77539,153.1221l45.23438-37.64843A16.68222,16.68222,0,0,0,239.166,97.41117Z" />
+      </svg>
+      <svg width="192" height="192" fill="currentColor" viewBox="0 0 256 256">
+        <rect width="256" height="256" fill="none" />
+        <path d="M239.166,97.41117A16.37036,16.37036,0,0,0,224.63477,86.044l-59.39063-4.15625L143.21289,26.41117A16.33117,16.33117,0,0,0,127.99414,15.9971h-.01562A16.324,16.324,0,0,0,112.791,26.41117L90.43164,82.208,31.36914,86.044A16.37036,16.37036,0,0,0,16.83789,97.41117a16.68222,16.68222,0,0,0,5.15625,18.0625l45.4375,38.40625L53.916,207.044a18.37492,18.37492,0,0,0,7.01562,19.51562,17.83088,17.83088,0,0,0,20.0625.625l46.875-29.69531c.0625-.04687.125-.07812.26563,0l50.4375,31.95313a16.14026,16.14026,0,0,0,18.20312-.5625,16.64744,16.64744,0,0,0,6.35938-17.67969L188.77539,153.1221l45.23438-37.64843A16.68222,16.68222,0,0,0,239.166,97.41117Z" />
+      </svg>
+      <svg width="192" height="192" fill="currentColor" viewBox="0 0 256 256">
+        <rect width="256" height="256" fill="none" />
+        <path d="M239.166,97.41117A16.37036,16.37036,0,0,0,224.63477,86.044l-59.39063-4.15625L143.21289,26.41117A16.33117,16.33117,0,0,0,127.99414,15.9971h-.01562A16.324,16.324,0,0,0,112.791,26.41117L90.43164,82.208,31.36914,86.044A16.37036,16.37036,0,0,0,16.83789,97.41117a16.68222,16.68222,0,0,0,5.15625,18.0625l45.4375,38.40625L53.916,207.044a18.37492,18.37492,0,0,0,7.01562,19.51562,17.83088,17.83088,0,0,0,20.0625.625l46.875-29.69531c.0625-.04687.125-.07812.26563,0l50.4375,31.95313a16.14026,16.14026,0,0,0,18.20312-.5625,16.64744,16.64744,0,0,0,6.35938-17.67969L188.77539,153.1221l45.23438-37.64843A16.68222,16.68222,0,0,0,239.166,97.41117Z" />
+      </svg>
+      <svg width="192" height="192" fill="currentColor" viewBox="0 0 256 256">
+        <rect width="256" height="256" fill="none" />
+        <path d="M239.166,97.41117A16.37036,16.37036,0,0,0,224.63477,86.044l-59.39063-4.15625L143.21289,26.41117A16.33117,16.33117,0,0,0,127.99414,15.9971h-.01562A16.324,16.324,0,0,0,112.791,26.41117L90.43164,82.208,31.36914,86.044A16.37036,16.37036,0,0,0,16.83789,97.41117a16.68222,16.68222,0,0,0,5.15625,18.0625l45.4375,38.40625L53.916,207.044a18.37492,18.37492,0,0,0,7.01562,19.51562,17.83088,17.83088,0,0,0,20.0625.625l46.875-29.69531c.0625-.04687.125-.07812.26563,0l50.4375,31.95313a16.14026,16.14026,0,0,0,18.20312-.5625,16.64744,16.64744,0,0,0,6.35938-17.67969L188.77539,153.1221l45.23438-37.64843A16.68222,16.68222,0,0,0,239.166,97.41117Z" />
+      </svg>
+      <svg width="192" height="192" fill="currentColor" viewBox="0 0 256 256">
+        <rect width="256" height="256" fill="none" />
+        <path d="M239.166,97.41117A16.37036,16.37036,0,0,0,224.63477,86.044l-59.39063-4.15625L143.21289,26.41117A16.33117,16.33117,0,0,0,127.99414,15.9971h-.01562A16.324,16.324,0,0,0,112.791,26.41117L90.43164,82.208,31.36914,86.044A16.37036,16.37036,0,0,0,16.83789,97.41117a16.68222,16.68222,0,0,0,5.15625,18.0625l45.4375,38.40625L53.916,207.044a18.37492,18.37492,0,0,0,7.01562,19.51562,17.83088,17.83088,0,0,0,20.0625.625l46.875-29.69531c.0625-.04687.125-.07812.26563,0l50.4375,31.95313a16.14026,16.14026,0,0,0,18.20312-.5625,16.64744,16.64744,0,0,0,6.35938-17.67969L188.77539,153.1221l45.23438-37.64843A16.68222,16.68222,0,0,0,239.166,97.41117Z" />
+      </svg>
+    </div>
+  );
+
+  const ProductAddButton = () => (
+    <button className="product-btn product-btn--add">
+      <svg width="192" height="192" fill="currentColor" viewBox="0 0 256 256">
+        <rect width="256" height="256" fill="none" />
+        <line
+          x1="40"
+          y1="128"
+          x2="216"
+          y2="128"
+          fill="none"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="16"
+        />
+        <line
+          x1="128"
+          y1="40"
+          x2="128"
+          y2="216"
+          fill="none"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="16"
+        />
+      </svg>
+    </button>
+  );
+
+  const ProductFavoritesButton = () => (
+    <button className="product-btn product-btn--favorite">
+      <svg width="192" height="192" fill="currentColor" viewBox="0 0 256 256">
+        <rect width="256" height="256" fill="none" />
+        <path
+          d="M133.65683,211.88227l81.0323-81.0322c19.9104-19.91038,22.84784-52.666,4.00583-73.59029a52.0026,52.0026,0,0,0-75.46451-2.02934L127.99994,70.46082,114.85007,57.3109C94.93972,37.40047,62.18409,34.463,41.25979,53.305a52.00261,52.00261,0,0,0-2.02934,75.46452l83.11268,83.11272A8,8,0,0,0,133.65683,211.88227Z"
+          fill="none"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="16"
+        />
+      </svg>
+    </button>
+  );
+
+  const ProductInfo = ({ name, imgUrl, price }: any) => (
+    <li className="product-list-item">
+      <article className="product">
+        <div className="product-image">
+          <img alt="product" src={imgUrl} />
+        </div>
+        <div className="product-content">
+          <h3 className="product-title">{name}</h3>
+          <ProductRating />
+          <div className="product-info">
+            <span className="product-price">{price}</span>
+            <div className="product-btn-group">
+              <ProductFavoritesButton />
+              <ProductAddButton />
+            </div>
+          </div>
+        </div>
+      </article>
+    </li>
+  );
+
+  const ProductList = () => (
+    <ul className="product-list">
+      {products.map((product, idx) => (
+        <ProductInfo
+          key={idx}
+          name={product.name}
+          imgUrl={product.imgUrl}
+          price={product.price}
+        />
+      ))}
+    </ul>
+  );
+
+  const ProductCategoryList = () => (
+    <ul className="category-list">
+      {categories.map((category, idx) => (
+        <li key={idx} className="category-list-item">
+          <a href="#" className="category">
+            {category.name}
+          </a>
+        </li>
+      ))}
+    </ul>
+  );
+
+  const ProductHeader = () => (
+    <div className="section-header">
+      <h2 className="section-title">Bestsellers</h2>
+      <span className="section-icon">
+        <svg width="192" height="192" fill="currentColor" viewBox="0 0 256 256">
+          <rect width="256" height="256" fill="none" />
+          <line
+            x1="40"
+            y1="128"
+            x2="216"
+            y2="128"
+            fill="none"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="16"
           />
-          <path fill="none" d="M0 0h141.732v141.732H0z" />
+          <polyline
+            points="144 56 216 128 144 200"
+            fill="none"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="16"
+          />
         </svg>
-      ),
-    },
-  ];
-
-  const NavLinks = () => (
-    <div className="tabs">
-      <a href="#">Overview</a>
-      <a href="#" className="active">
-        Payments
-      </a>
-      {["Cards", "Account", "System", "Business"].map((tabs, idx) => (
-        <a key={idx} href="#">
-          {tabs}
-        </a>
-      ))}
+      </span>
     </div>
   );
 
-  const SideNavigation = () => (
-    <nav className="navigation">
-      {sideNavigationLinks.map((nav, idx) => (
-        <a key={idx} href="#">
-          <i className={`ph-${nav.className}`} />
-          <span>{nav.name}</span>
-        </a>
-      ))}
-    </nav>
-  );
-
-  const AppHeaderActions = () => (
-    <div className="app-header-actions">
-      <button className="user-profile">
-        <span>Kwame Frimpong</span>
-        <span>
-          <img src={photos.kwame} alt="avatar" />
+  const ProductCard = () => (
+    <div className="card">
+      <div className="card-content">
+        <h2 className="card-title">Music column</h2>
+        <span className="card-subtitle">
+          New models
+          <svg
+            width="192"
+            height="192"
+            fill="currentColor"
+            viewBox="0 0 256 256"
+          >
+            <rect width="256" height="256" fill="none" />
+            <line
+              x1="40"
+              y1="128"
+              x2="216"
+              y2="128"
+              fill="none"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="16"
+            />
+            <polyline
+              points="144 56 216 128 144 200"
+              fill="none"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="16"
+            />
+          </svg>
         </span>
-      </button>
-      <div className="app-header-actions-buttons">
-        <button className="icon-button large">
-          <i className="ph-magnifying-glass" />
-        </button>
-        <button className="icon-button large">
-          <i className="ph-bell" />
-        </button>
       </div>
     </div>
   );
 
-  const Footer = () => (
-    <footer className="footer">
-      <h1>
-        Animafi<small>©</small>
-      </h1>
-      <div>
-        Animafi Aduana Org ©<br />
-        All Rights Reserved 2021
-      </div>
+  const ProductFooter = () => (
+    <footer className="app-footer">
+      <nav className="menu-bar">
+        <a href="#" className="menu-bar-item menu-bar-item--active">
+          <svg
+            width="192"
+            height="192"
+            fill="currentColor"
+            viewBox="0 0 256 256"
+          >
+            <rect width="256" height="256" fill="none" />
+            <path
+              d="M213.3815,109.61945,133.376,36.88436a8,8,0,0,0-10.76339.00036l-79.9945,72.73477A8,8,0,0,0,40,115.53855V208a8,8,0,0,0,8,8H208a8,8,0,0,0,8-8V115.53887A8,8,0,0,0,213.3815,109.61945Z"
+              fill="none"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="16"
+            />
+          </svg>
+          <span className="menu-bar-item-text">Home</span>
+        </a>
+        <a href="#" className="menu-bar-item">
+          <svg
+            width="192"
+            height="192"
+            fill="currentColor"
+            viewBox="0 0 256 256"
+          >
+            <rect width="256" height="256" fill="none" />
+            <circle
+              cx="116"
+              cy="116"
+              r="84"
+              fill="none"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="16"
+            />
+            <line
+              x1="175.39356"
+              y1="175.40039"
+              x2="223.99414"
+              y2="224.00098"
+              fill="none"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="16"
+            />
+          </svg>
+          <span className="menu-bar-item-text">Search</span>
+        </a>
+        <a href="#" className="menu-bar-item">
+          <svg
+            width="192"
+            height="192"
+            fill="currentColor"
+            viewBox="0 0 256 256"
+          >
+            <rect width="256" height="256" fill="none" />
+            <circle cx="80" cy="216" r="16" />
+            <circle cx="184" cy="216" r="16" />
+            <path
+              d="M42.28575,72H221.71429l-26.39873,92.39554A16,16,0,0,1,179.93118,176H84.06882a16,16,0,0,1-15.38438-11.60446L32.51492,37.80223A8,8,0,0,0,24.82273,32H8"
+              fill="none"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="16"
+            />
+          </svg>
+          <span className="menu-bar-item-text">Cart</span>
+        </a>
+        <a href="#" className="menu-bar-item">
+          <svg
+            width="192"
+            height="192"
+            fill="currentColor"
+            viewBox="0 0 256 256"
+          >
+            <rect width="256" height="256" fill="none" />
+            <circle
+              cx="128"
+              cy="96"
+              r="64"
+              fill="none"
+              stroke="currentColor"
+              stroke-miterlimit="10"
+              strokeWidth="16"
+            />
+            <path
+              d="M30.989,215.99064a112.03731,112.03731,0,0,1,194.02311.002"
+              fill="none"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="16"
+            />
+          </svg>
+          <span className="menu-bar-item-text">Profile</span>
+        </a>
+      </nav>
     </footer>
   );
 
-  const Logo = () => (
-    <div className="logoAnimafi">
-      <span className="logo-icon">
-        <img alt="logoAnimafi" src={logoAnimafi.logo} />
+  const ProductCategoryHeader = () => (
+    <div className="section-header">
+      <h2 className="section-title">Categories</h2>
+      <span className="section-icon">
+        <svg width="192" height="192" fill="currentColor" viewBox="0 0 256 256">
+          <rect width="256" height="256" fill="none" />
+          <line
+            x1="40"
+            y1="128"
+            x2="216"
+            y2="128"
+            fill="none"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="16"
+          />
+          <polyline
+            points="144 56 216 128 144 200"
+            fill="none"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="16"
+          />
+        </svg>
       </span>
-      <h1 className="logo-title">
-        <span>Animafi</span>
-        <span>Aduana</span>
-      </h1>
     </div>
   );
 
-  const Tiles = () => (
-    <div className="tiles">
-      {tiles.map((tile, idx) => (
-        <article key={idx} className="tile">
-          <div className="tile-header">
-            <i className={`ph-${tile.className}`} />
-            <h3>
-              <span>{tile.label}</span>
-              <span>{tile.subLabel}</span>
-            </h3>
-          </div>
-          <a href="#">
-            <span>Go to service</span>
-            <span className="icon-button">
-              <i className="ph-caret-right-bold" />
-            </span>
-          </a>
-        </article>
-      ))}
-    </div>
-  );
-
-  const ServiceSectionFooter = () => (
-    <div className="service-section-footer">
-      <p>
-        Services are paid according to the current state of the currency and
-        tariff.
-      </p>
-    </div>
-  );
-
-  const TransferSection = () => (
-    <section className="transfer-section">
-      <div className="transfer-section-header">
-        <h2>Latest transfers</h2>
-        <div className="filter-options">
-          <p>Filter selected: more than 100 $</p>
-          <button className="icon-button">
-            <i className="ph-funnel" />
-          </button>
-          <button className="icon-button">
-            <i className="ph-plus" />
-          </button>
-        </div>
-      </div>
-      <div className="transfers">
-        {transfers.map((transfer, idx) => (
-          <div key={idx} className="transfer">
-            <div className="transfer-logo">
-              <img src={transfer.svg} alt="apple" />
-            </div>
-            <dl className="transfer-details">
-              <div>
-                <dt>{transfer.label}</dt>
-                <dd>{transfer.subLabel}</dd>
-              </div>
-              <div>
-                <dt>{transfer.cardDigits}</dt>
-                <dd>Last four digits</dd>
-              </div>
-              <div>
-                <dt>{transfer.date}</dt>
-                <dd>Date payment</dd>
-              </div>
-            </dl>
-            <div className="transfer-number">{transfer.amount}</div>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-
-  const Payments = () => (
-    <div className="payments">
-      {payments.map((info, idx) => (
-        <div key={idx} className="payment">
-          <div className={`card ${info.color}`}>
-            <span>{info.date}</span>
-            <span>{info.cardNumber}</span>
-          </div>
-          <div className="payment-details">
-            <h3>{info.title}</h3>
-            <div>
-              <span>{info.amount}</span>
-              <button className="icon-button">
-                <i className="ph-caret-right-bold" />
-              </button>
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-
-  const AppSideBar = () => (
-    <div className="app-body-sidebar">
-      <section className="payment-section">
-        <h2>New Payment</h2>
-        <div className="payment-section-header">
-          <p>Choose a card to transfer money</p>
-          <div>
-            {cardType.map((card, idx) => (
-              <button key={idx} className={`card-button ${card.className}`}>
-                {card.svg}
-              </button>
-            ))}
-          </div>
-        </div>
-        <Payments />
-        <div className="faq">
-          <p>Most frequently asked questions</p>
-          <div>
-            <label>Question</label>
-            <input type="text" placeholder="Type here" />
-          </div>
-        </div>
-        <div className="payment-section-footer">
-          <button className="save-button">Save</button>
-          <button className="settings-button">
-            <i className="ph-gear" />
-            <span>More settings</span>
-          </button>
-        </div>
-      </section>
-    </div>
-  );
-
-  const DropdownField = () => (
-    <div className="dropdown-field">
-      <select>
-        <option>Home</option>
-        <option>Work</option>
-      </select>
-      <i className="ph-caret-down" />
-    </div>
-  );
-
-  const SearchButton = () => <button className="flat-button">Search</button>;
-
-  const MobileOnlyToggleSearch = () => (
-    <div className="mobile-only">
-      <button className="flat-button">Toggle search</button>
-    </div>
-  );
-
-  const SearchField = () => (
-    <div className="search-field">
-      <i className="ph-magnifying-glass" />
-      <input type="text" placeholder="Account number" />
-    </div>
+  const ProductNotificationButton = () => (
+    <button className="app-header-btn app-header-btn--notification">
+      <svg width="192" height="192" fill="currentColor" viewBox="0 0 256 256">
+        <rect width="256" height="256" fill="none" />
+        <line
+          x1="96"
+          y1="224"
+          x2="160"
+          y2="224"
+          fill="none"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="16"
+        />
+        <path
+          d="M56.20305,104A71.899,71.899,0,0,1,128.5484,32.002c39.58967.29432,71.25651,33.20133,71.25651,72.90185V112c0,35.81563,7.49325,56.59893,14.093,67.95814A7.999,7.999,0,0,1,207.01628,192H48.98365A7.99908,7.99908,0,0,1,42.103,179.95641c6.60328-11.35959,14.1-32.1426,14.1-67.95641Z"
+          fill="none"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="16"
+        />
+      </svg>
+    </button>
   );
 
   return (
-    <div className="dashboardContainer">
+    <div>
       <div className="app">
         <header className="app-header">
-          <div className="app-header-logo">
-            <Logo />
-          </div>
-          <div className="app-header-navigation">
-            <NavLinks />
-          </div>
-          <AppHeaderActions />
-          <div className="app-header-mobile">
-            <button className="icon-button large">
-              <i className="ph-list" />
-            </button>
-          </div>
+          <button className="app-header-btn app-header-btn--active">
+            <svg
+              width="192"
+              height="192"
+              fill="currentColor"
+              viewBox="0 0 256 256"
+            >
+              <rect width="256" height="256" fill="none" />
+              <line
+                x1="40"
+                y1="128"
+                x2="216"
+                y2="128"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="16"
+              />
+              <line
+                x1="40"
+                y1="64"
+                x2="216"
+                y2="64"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="16"
+              />
+              <line
+                x1="40"
+                y1="192"
+                x2="216"
+                y2="192"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="16"
+              />
+            </svg>
+          </button>
+          <ProductNotificationButton />
         </header>
-        <div className="app-body">
-          <div className="app-body-navigation">
-            <SideNavigation />
-            <Footer />
-          </div>
-          <div className="app-body-main-content">
-            <section className="service-section">
-              <h2>Service</h2>
-              <div className="service-section-header">
-                <SearchField />
-                <DropdownField />
-                <SearchButton />
-              </div>
-              <MobileOnlyToggleSearch />
-              <Tiles />
-              <ServiceSectionFooter />
-            </section>
-            <TransferSection />
-          </div>
-          <AppSideBar />{" "}
-        </div>
+        <main className="app-body">
+          <section className="section">
+            <ProductHeader />
+            <ProductList />
+          </section>
+          <section className="section">
+            <ProductCategoryHeader />
+            <ProductCategoryList />
+          </section>
+          <section className="section">
+            <div className="section-body">
+              <ProductCard />
+            </div>
+          </section>
+        </main>
+        <ProductFooter />
       </div>
     </div>
   );

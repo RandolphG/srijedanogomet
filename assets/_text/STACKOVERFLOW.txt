@@ -1,0 +1,2 @@
+Convert jQuery Animation to React Hook
+	https://stackoverflow.com/questions/67183638/convert-jquery-animation-to-react-hook

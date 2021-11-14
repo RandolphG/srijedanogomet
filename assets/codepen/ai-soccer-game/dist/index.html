@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - µ AI Soccer Game</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div class="control">
+	<button onClick="timer.start()">Start</button> 
+	<button onClick="timer.stop()">Stop</button> 
+	<button onClick="timer.reset()">Reset</button>
+	<button onClick="pause()">Stop RAF</button>
+</div>
+<canvas id="canvas" class="table"></canvas>
+
+<script>
+	function Vec2() {
+		var x = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+		var y = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+		this.x = x;
+		this.y = y;
+		this.pool = [];
+	}
+
+	Vec2.prototype.add = function add(vec) {
+		this.x = this.x + vec.x;
+		this.y = this.y + vec.y;
+		return this;
+	};
+
+	Vec2.prototype.subtract = function subtract(vec) {
+		this.x = this.x - vec.x;
+		this.y = this.y - vec.y;
+		return this;
+	};
+
+	Vec2.prototype.multiply = function multiply(vec) {
+		this.x = this.x * vec.x;
+		this.y = this.y * vec.y;
+		return this;
+	};
+	
+	Vec2.prototype.normalize = function normalize() {
+		var lsq = this.lengthSquared;
+		if (lsq === 0) {
+			this.x = 1;
+			return this;
+		}
+		if (lsq === 1) {
+			return this;
+		}
+		var l = Math.sqrt(lsq);
+		this.x /= l;
+		this.y /= l;
+		return this;
+	};
+
+	Vec2.prototype.isNormalized = function isNormalized() {
+		return this.lengthSquared === 1;
+	};
+
+	Vec2.prototype.truncate = function truncate(max) {
+		// if (this.length > max) {
+		if (this.lengthSquared > max * max) {
+			this.length = max;
+		}
+		return this;
+	};
+
+	Vec2.prototype.scaleBy = function scaleBy(mul) {
+		this.x *= mul;
+		this.y *= mul;
+		return this;
+	};
+
+	Vec2.prototype.divideBy = function divideBy(div) {
+		this.x /= div;
+		this.y /= div;
+		return this;
+	};
+
+	Vec2.prototype.equals = function equals(vec) {
+		return this.x === vec.x && this.y === vec.y;
+	};
+
+	Vec2.prototype.negate = function negate() {
+		this.x = -this.x;
+		this.y = -this.y;
+		return this;
+	};
+
+	Vec2.prototype.dotProduct = function dotProduct(vec) {
+		/*
+        If A and B are perpendicular (at 90 degrees to each other), the result
+        of the dot product will be zero, because cos(Θ) will be zero.
+        If the angle between A and B are less than 90 degrees, the dot product
+        will be positive (greater than zero), as cos(Θ) will be positive, and
+        the vector lengths are always positive values.
+        If the angle between A and B are greater than 90 degrees, the dot
+        product will be negative (less than zero), as cos(Θ) will be negative,
+        and the vector lengths are always positive values
+        */
+		return this.x * vec.x + this.y * vec.y;
+	};
+
+	Vec2.prototype.crossProduct = function crossProduct(vec) {
+		/*
+        The sign tells us if vec to the left (-) or the right (+) of this vec
+        */
+		return this.x * vec.y - this.y * vec.x;
+	};
+
+	Vec2.prototype.distanceSq = function distanceSq(vec) {
+		var dx = vec.x - this.x;
+		var dy = vec.y - this.y;
+		return dx * dx + dy * dy;
+	};
+
+	Vec2.prototype.distance = function distance(vec) {
+		return Math.sqrt(this.distanceSq(vec));
+	};
+
+	Vec2.prototype.clone = function clone() {
+		return this.get(this.x, this.y);
+	};
+
+	Vec2.prototype.reset = function reset() {
+		this.x = 0;
+		this.y = 0;
+		return this;
+	};
+
+	Vec2.prototype.copy = function copy(vec) {
+		this.x = vec.x;
+		this.y = vec.y;
+		return this;
+	};
+
+	Vec2.prototype.perpendicular = function perpendicular() {
+		return this.get(-this.y, this.x);
+	};
+
+	Vec2.prototype.sign = function sign(vec) {
+		// Determines if a given vector is to the right or left of this vector.
+		// If to the left, returns -1. If to the right, +1.
+		var p = this.perpendicular();
+		var s = p.dotProduct(vec) < 0 ? -1 : 1;
+		p.dispose();
+		return s;
+	};
+
+	Vec2.prototype.set = function set(angle, length) {
+		this.x = Math.cos(angle) * length;
+		this.y = Math.sin(angle) * length;
+		return this;
+	};
+
+	Vec2.prototype.dispose = function dispose() {
+		this.x = 0;
+		this.y = 0;
+		this.pool.push(this);
+	};
+
+	Vec2.prototype.get = function get(x, y) {
+		var v = this.pool.length > 0 ? this.pool.pop() : new Vec2();
+		v.x = x || 0;
+		v.y = y || 0;
+		return v;
+	};
+
+	Vec2.prototype.fill = function fill(n) {
+		while (pool.length < n) {
+			thus.pool.push(new Vec2());
+		}
+	};
+
+	Vec2.prototype.angleBetween = function angleBetween(a, b) {
+		if (!a.isNormalized()) {
+			a = a.clone().normalize();
+		}
+		if (!b.isNormalized()) {
+			b = b.clone().normalize();
+		}
+		return Math.acos(a.dotProduct(b));
+	};
+
+	Object.defineProperties(Vec2.prototype, {
+		lengthSquared: {
+			get: function get() {
+				return this.x * this.x + this.y * this.y;
+			}
+		}, 
+		length: {
+			get: function get() {
+				return Math.sqrt(this.lengthSquared);
+			},
+			set: function set(value) {
+				var a = this.angle;
+				this.x = Math.cos(a) * value;
+				this.y = Math.sin(a) * value;
+			}
+		}, 
+		angle: {
+			get: function get() {
+				return Math.atan2(this.y, this.x);
+			},
+			set: function set(value) {
+				var l = this.length;
+				this.x = Math.cos(value) * l;
+				this.y = Math.sin(value) * l;
+			}
+		}
+	});
+</script><!-- Vec2 -->
+
+<script>
+	//http://www.fifa.com/img/worldfootball/lotg/law1/Law1_Page13_01.jpg
+	(function Pitch(){
+
+		var canvasPitch = document.createElement("canvas");
+		document.body.appendChild(canvasPitch);
+		canvasPitch.style.position = "absolute";
+		canvasPitch.style.top = "60px";
+		canvasPitch.style.left = "365px";
+		canvasPitch.style.zIndex = "-99";
+		canvasPitch.style.backgroundColor = "#009900";    
+		canvasPitch.width = 1000;
+		canvasPitch.height = 600;
+		var contextPitch = canvasPitch.getContext('2d');
+		var ratio = 2.5;
+		var offsetY = 20;
+
+		//Pitch
+		contextPitch.strokeStyle = '#fff';
+		contextPitch.fillStyle = '#f00';
+		contextPitch.lineWidth = 1.5;
+		contextPitch.rect(20 * ratio, 0 * ratio + offsetY, 360 * ratio, 225 * ratio);
+		contextPitch.stroke();
+
+		//Center
+		contextPitch.beginPath();
+		contextPitch.arc(192 * ratio + offsetY, 112.5 * ratio + offsetY, 30 * ratio, 0, 2 * Math.PI, false); //big circle
+		contextPitch.moveTo(192 * ratio + offsetY, 0 * ratio + offsetY);
+		contextPitch.lineTo(192 * ratio + offsetY, 225 * ratio + offsetY);//center line
+		contextPitch.stroke();
+		contextPitch.beginPath();
+		contextPitch.arc(192 * ratio + offsetY, 112.5 * ratio + offsetY, 1 * ratio, 0, 2 * Math.PI, false); //small circle
+		contextPitch.stroke();
+
+		//Big area
+		contextPitch.rect(20 * ratio, 41.25 * ratio + offsetY, 54 * ratio, 142 * ratio); //left
+		contextPitch.rect(326 * ratio, 41.25 * ratio + offsetY, 54 * ratio, 142 * ratio); //right
+
+		//Small area
+		contextPitch.rect(20 * ratio, 82 * ratio + offsetY, 18 * ratio, 60 * ratio); //left
+		contextPitch.rect(362 * ratio, 82 * ratio + offsetY, 18 * ratio, 60 * ratio); //right
+		contextPitch.stroke();
+
+		//circle area
+		contextPitch.beginPath()
+		contextPitch.arc(56 * ratio, 112.5 * ratio + offsetY, 1 * ratio, 0, 2 * Math.PI, false); //left
+		contextPitch.stroke();
+		contextPitch.beginPath()
+		contextPitch.arc(344 * ratio, 112.5 * ratio + offsetY, 1 * ratio, 0, 2 * Math.PI, false); //right
+		contextPitch.stroke();
+
+		//semi circle 
+		contextPitch.beginPath()
+		contextPitch.arc(46 * ratio, 112.5 * ratio + offsetY, 40 * ratio, -0.25 * Math.PI, 0.25 * Math.PI, false); //left
+		contextPitch.stroke();
+		contextPitch.beginPath()
+		contextPitch.arc(354 * ratio, 112.5 * ratio + offsetY, 40 * ratio, 0.75 * Math.PI, 1.25 * Math.PI, false); //left
+		contextPitch.stroke();
+
+		//corner
+		contextPitch.beginPath()
+		contextPitch.arc(20 * ratio, 0 + offsetY, 7 * ratio, 0 * Math.PI, 0.50 * Math.PI, false);//top left
+		contextPitch.stroke();
+		contextPitch.beginPath()
+		contextPitch.arc(20 * ratio, 225 * ratio + offsetY, 7 * ratio, -0.50 * Math.PI, 0 * Math.PI, false);//bottom left
+		contextPitch.stroke();
+		contextPitch.beginPath()
+		contextPitch.arc(380 * ratio, 0 + offsetY, 7 * ratio, 0.50 * Math.PI, 1 * Math.PI, false);//top right
+		contextPitch.stroke();
+		contextPitch.beginPath()
+		contextPitch.arc(380 * ratio, 225 * ratio + offsetY, 7 * ratio, 1 * Math.PI, 1.50 * Math.PI, false);//bottom right
+		contextPitch.stroke();
+
+		//Golie
+		contextPitch.rect(12 * ratio, 97 * ratio + offsetY, 8 * ratio, 24 * ratio + offsetY); //left
+		contextPitch.rect(380 * ratio, 97 * ratio + offsetY, 8 * ratio, 24 * ratio + offsetY); //right
+		contextPitch.stroke();
+
+		//external line
+		contextPitch.moveTo(12 * ratio, 24 * ratio + offsetY);
+		contextPitch.lineTo(20 * ratio, 24 * ratio + offsetY);//top left
+		contextPitch.stroke();
+
+		contextPitch.moveTo(12 * ratio, 201 * ratio + offsetY);
+		contextPitch.lineTo(20 * ratio, 201 * ratio + offsetY);//bottom left
+		contextPitch.stroke();
+
+		contextPitch.moveTo(380 * ratio, 24 * ratio + offsetY);
+		contextPitch.lineTo(388 * ratio, 24 * ratio + offsetY);//top right
+		contextPitch.stroke();
+
+		contextPitch.moveTo(380 * ratio, 201 * ratio + offsetY);
+		contextPitch.lineTo(388 * ratio, 201 * ratio + offsetY);//bottom right
+		contextPitch.stroke();
+
+	})();//Pitch
+</script><!-- Pitch -->
+
+<script>
+	function Scoreboard(){
+		var canvasScoreboard = document.createElement("canvas");
+		document.body.appendChild(canvasScoreboard);
+		canvasScoreboard.style.position = "absolute";
+		canvasScoreboard.style.top = "60px";
+		canvasScoreboard.style.left = "30px";
+		canvasScoreboard.style.zIndex = "-97";
+		this.contextScoreboard = canvasScoreboard.getContext('2d');
+		this.contextScoreboard.textBaseline = "top";
+		//Team Name
+		this.contextScoreboard.fillStyle = "#2e2e2e";
+		this.contextScoreboard.fillRect(65, 0, 193, 28);
+		this.contextScoreboard.fillStyle = "#ccffff";
+		this.contextScoreboard.font = 'normal 17px Arial';
+		this.contextScoreboard.fillText("RED", 79, 2);
+		this.contextScoreboard.fillText("BLUE", 205, 2);
+		//
+		this.contextScoreboard.lineWidth = 0.2;
+		this.contextScoreboard.rect(130, 2, 24, 23);
+		this.contextScoreboard.rect(162, 2, 24, 23);
+		this.contextScoreboard.fillStyle = "#2e2e2e";
+		this.contextScoreboard.fill();
+		this.contextScoreboard.strokeStyle = "#336699";
+		this.contextScoreboard.stroke();
+		//colors left
+		for (i = 0; i < 5; i++){				
+			i % 2 === 0 ? color = "#ff0000" : color = "#0000ff";
+			this.contextScoreboard.fillStyle = color;
+			this.contextScoreboard.fillRect(6*i*2+66,21,12,3);
+			this.contextScoreboard.stroke();
+		};
+		//colors right
+		for (i = 0; i < 5; i++){				
+			i % 2 === 0 ? color = "#00ff00" : color = "#f0f0f0";
+			this.contextScoreboard.fillStyle = color;
+			this.contextScoreboard.fillRect(6*i*2+192,21,12,3);
+			this.contextScoreboard.stroke();
+		};
+	};
+	//Time
+	Scoreboard.prototype.updateTime = function( minute, second ){
+		this.contextScoreboard.clearRect(0, 0, 65, 30);
+		this.contextScoreboard.fillStyle = "#2e2e2e";
+		this.contextScoreboard.fillRect(0, 0, 65, 30);
+		this.contextScoreboard.fillStyle = '#dadada';
+		this.contextScoreboard.font = 'normal 23px Arial';
+		this.contextScoreboard.fillText(minute + ":"  + second, 5, 2);
+	};
+
+	//Score
+	Scoreboard.prototype.updateScore = function( homeScore, awayScore ){
+		homeScore = homeScore || 0; 
+		awayScore = awayScore || 0;
+		this.contextScoreboard.font = 'normal 20px Arial';
+		this.contextScoreboard.fillStyle = "#2e2e2e";
+		this.contextScoreboard.clearRect(137, 3, 17, 19);
+		this.contextScoreboard.clearRect(167, 3, 17, 19);
+		this.contextScoreboard.fillStyle = "#2e2e2e";
+		this.contextScoreboard.fillRect(137, 3, 17, 19);
+		this.contextScoreboard.fillRect(167, 3, 17, 19);
+		this.contextScoreboard.fillStyle = '#dadada';
+		this.contextScoreboard.fillText(homeScore, 137, 3);
+		this.contextScoreboard.fillText(awayScore, 168, 3);
+	};
+
+	/**
+	* Timer
+	*
+	*/
+	function Timer() {
+		this.scoreboard = new Scoreboard();
+		this.scoreboard.updateScore();
+		this.time = 5400;
+		this.status = 0;
+		this.timer_id;
+		this.reset();
+	};
+
+	Timer.prototype.start = function(){
+		if(this.status == 0) {
+			var that = this;
+			this.status = 1;
+			this.timer_id = setInterval(function() {
+				that.time--;
+				if(that.time < 0) { 
+					that.stop();
+					alert('time out');
+				} else {
+					that.generateTime();
+				};				
+			}, 1000);
+		};
+	};
+
+	Timer.prototype.stop =  function(){
+		if(this.status == 1)	{
+			this.status = 0;
+			clearInterval(this.timer_id);
+		};
+	};
+
+	Timer.prototype.reset =  function(){
+		this.time = 10;
+		this.generateTime();
+	};
+
+	Timer.prototype.getTime = function(){
+		return this.time;
+	};
+
+	Timer.prototype.getStatus = function(){
+		return this.status;
+	};
+
+	Timer.prototype.generateTime = function(){
+		var second = this.time % 60;
+		var minute = Math.floor(this.time / 60) % 60;
+		var homeScore = Math.floor(Math.random() * 5);
+		var awayScore = Math.floor(Math.random() * 5);
+		second = (second < 10) ? '0'+second : second;
+		minute = (minute < 10) ? '0'+minute : minute;
+		this.scoreboard.updateTime(minute, second);
+	};
+
+	var timer = new Timer();
+</script><!-- Scoreboard -->
+<!-- partial -->
+  <script  src="./script.js"></script>
+
+</body>
+</html>
