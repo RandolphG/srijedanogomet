@@ -6,8 +6,8 @@ import {
   Switch,
 } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
-import { UserAvatar, CookieStorage, Twitch, SplitText } from "../components";
-import { DashboardPage, Glitch, StatisticPage } from "../pages";
+import { Choose } from "../components";
+import { GettingStarted, Prototype } from "../pages";
 import { AppRouting, NonAuthRoute, NotFound, PrivateRoute } from "./components";
 
 /**
@@ -29,31 +29,13 @@ const AppRouter: FC = () => {
                   <Route exact path="/" component={renderRootRedirect} />
                   <PrivateRoute path="/app" component={AppRouting} />
                   <Route path="/non-auth" component={NonAuthRoute} />
-                  <Route exact path="/splitText" component={SplitText} />
-                  <Route exact path="/glitch" component={Glitch} />
-                  <Route
-                    exact
-                    path="/statisticsPage"
-                    component={StatisticPage}
-                  />
-                  <Route
-                    exact
-                    path="/dashboardPage"
-                    component={DashboardPage}
-                  />
-                  <Route
-                    exact
-                    path="/statisticPage"
-                    component={StatisticPage}
-                  />
-                  <Route exact path="/twitch" component={Twitch} />
+                  <Route exact path="/choose" component={Choose} />
+                  <Route exact path="/prototype" component={Prototype} />
                   <Route path="/404" component={NotFound} />
                   <Redirect to="/404" />
                 </Switch>
               )}
             />
-            <UserAvatar />
-            <CookieStorage />
           </AnimatePresence>
         </Suspense>
       </Router>

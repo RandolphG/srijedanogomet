@@ -1,0 +1,143 @@
+body {
+  background-color: black;
+}
+
+.content:before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0px;
+  right: 0px;
+  z-index: -1;
+  display: block;
+  background-image: url("../../../../resources/images/fieldbackground.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center bottom;
+  filter: blur(2px);
+}
+
+.content.content-blur:before {
+  transition: filter 3s ease;
+  filter: blur(15px);
+}
+
+.overlay {
+  content: "";
+  position: fixed;
+  display: block;
+  height: 100%;
+  width: 100%;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  z-index: -2;
+  opacity: 0.1;
+  background: rgba(0, 0, 0, 1);
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.images {
+  position: fixed;
+  height: 256px;
+  width: 90%;
+  top: 50%;
+  left: 50%;
+  border: white solid 2px;
+  transform: translate(-50%, -50%);
+  text-align: justify;
+}
+
+.images:after {
+  content: "";
+  width: 100%;
+  display: inline-block;
+}
+
+.images-blur {
+  transition: filter 3s ease;
+  filter: blur(5px);
+}
+
+.agent-container {
+  width: 256px;
+  height: 256px;
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  transition: visibility 1s ease-out;
+}
+
+.agent-image-container {
+  width: 256px;
+  height: 256px;
+  transition: transform 0.5s ease-in-out, perspective 0.5s ease-in-out;
+  perspective: 600px;
+  cursor: pointer;
+}
+
+.agent-image-container:hover {
+  transition: transform 0.1s ease-in-out, perspective 0.1s ease-in-out;
+  transform: scale(1.1, 1.1);
+  perspective: 500px;
+}
+
+.agent-image-container:hover > .agent-image {
+  filter: brightness(100%);
+}
+
+.agent-image {
+  width: 250px;
+  filter: brightness(50%);
+  transition: filter 0.1s ease-in;
+  transition: transform 1.5s ease;
+  position: absolute;
+  -webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(70%, transparent), to(rgba(250, 250, 250, 0.2)));
+}
+
+.agent-image-left {
+  height: 256px;
+  width: 96px;
+  position: absolute;
+  z-index: 101;
+  transform: translate(-25%, 0%);
+}
+
+.agent-image-right {
+  height: 256px;
+  width: 96px;
+  position: absolute;
+  right: 0px;
+  z-index: 101;
+  transform: translate(25%, 0%);
+}
+
+.agent-image-left:hover ~ .agent-image {
+  transition: transform 1s ease;
+  transform: rotateY(-10deg);
+}
+
+.agent-image-right:hover ~ .agent-image {
+  transition: transform 1s ease;
+  transform: rotateY(10deg);
+}
+
+.agent-container-selected {
+  transition: 1s ease 0.1s;
+}
+
+.agent-image-container-selected {
+  transform: scale(1.1, 1.1);
+}
+
+.agent-image-selected {
+  filter: brightness(100%);
+}

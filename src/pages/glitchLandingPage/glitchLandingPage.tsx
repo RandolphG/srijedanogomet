@@ -1,10 +1,8 @@
 import React, { useEffect } from "react";
 
-const Glitch = () => {
+const Glitch = ({ topTitle = "Glitch", bottomTitle = "Effect" }: any) => {
   useEffect(() => {
     const canvas: any = document.querySelector("canvas");
-    console.log(`canvas`, canvas);
-    console.log(`window`, window);
     const ctx: any = canvas.getContext("2d");
     const colors = [
       "#b4b2b5",
@@ -17,7 +15,7 @@ const Glitch = () => {
     ];
 
     let linePos = 0;
-    let rAF: any;
+    let rAF: number;
 
     let innerWidth: any = window.innerWidth;
     let innerHeight: any = window.innerHeight;
@@ -31,12 +29,12 @@ const Glitch = () => {
       ctx.shadowColor = color;
       ctx.fillStyle = color;
       ctx.setTransform(1, -0.15, 0, 1, 0, -10);
-      ctx.fillText("Glitch", innerWidth / 2, innerHeight / 2 - 5);
+      ctx.fillText(`${topTitle}`, innerWidth / 2, innerHeight / 2 - 5);
 
       ctx.fillStyle = "white";
       ctx.shadowBlur = 30;
       ctx.shadowColor = color;
-      ctx.fillText("Glitch", innerWidth / 2, innerHeight / 2);
+      ctx.fillText(`${topTitle}`, innerWidth / 2, innerHeight / 2);
 
       ctx.font = "18vh Bungee Inline";
       ctx.shadowBlur = 30;
@@ -44,7 +42,7 @@ const Glitch = () => {
       ctx.fillStyle = "#fff";
       ctx.setTransform(1, -0.15, 0, 1, 0, -10);
       ctx.fillText(
-        "Effect",
+        `${bottomTitle}`,
         innerWidth / 2,
         innerHeight / 2 + innerHeight / 10
       );
