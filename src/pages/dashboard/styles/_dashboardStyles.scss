@@ -1,6 +1,5 @@
-/* variables */
 $border: 2px solid white;
-.prototype {
+.dashboard {
   box-sizing: border-box;
   position: relative;
   border: $border;
@@ -12,7 +11,7 @@ $border: 2px solid white;
   color: white;
   padding: 1rem;
 
-  .prototypeContainer {
+  .dashboardContainer {
     box-sizing: border-box;
     position: relative;
     border: $border;
@@ -23,6 +22,11 @@ $border: 2px solid white;
     justify-content: center;
     align-items: center;
     padding: 0 4rem;
+
+    .dashboardTitle {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
 
     .buttonContainers {
       box-sizing: border-box;
@@ -38,6 +42,7 @@ $border: 2px solid white;
 
       &__button {
         cursor: pointer;
+        text-decoration: none;
         width: 100%;
         height: 100%;
         background: black;

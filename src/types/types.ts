@@ -1,6 +1,5 @@
 import { RouterState } from "connected-react-router";
 import React, { ChangeEvent, FC, FormEvent, LazyExoticComponent } from "react";
-import { RouteComponentProps } from "react-router-dom";
 import { Reducer } from "redux";
 import { ActionType } from "typesafe-actions";
 import { History } from "history";
@@ -76,16 +75,9 @@ export interface ISignInModalState {
 
 export interface IPrivateRoute {
   component:
-    | React.ComponentType<RouteComponentProps<any>>
     | React.ComponentType<any>
     | LazyExoticComponent<React.ComponentType<any>>;
   path: string;
-}
-
-export interface CustomRoute {
-  path: string;
-  name: string;
-  component: FC<RouteComponentProps>;
 }
 
 export type TShowModal = Boolean;

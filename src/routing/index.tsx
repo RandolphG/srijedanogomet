@@ -1,12 +1,21 @@
-import React, { FC, Fragment, Suspense } from "react";
+import React, { FC, Suspense } from "react";
 import {
   HashRouter as Router,
-  Redirect,
+  Navigate,
+  Outlet,
   Route,
-  Switch,
+  Routes,
 } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
-import { AppRouting, NonAuthRoute, NotFound, PrivateRoute } from "./components";
+import {
+  Dashboard,
+  Leaderboard,
+  Matches,
+  Prototype,
+  Registration,
+  SignIn,
+  TeamLineUp,
+} from "../pages";
 
 /**
  * application router
@@ -14,28 +23,50 @@ import { AppRouting, NonAuthRoute, NotFound, PrivateRoute } from "./components";
  * @constructor
  */
 const AppRouter: FC = () => {
-  const renderRootRedirect = () => <Redirect to="/app" />;
-
   return (
-    <Fragment>
-      <Router>
-        <Suspense fallback={<></>}>
-          <AnimatePresence exitBeforeEnter>
+    <Router>
+      <Suspense fallback={<></>}>
+        <AnimatePresence exitBeforeEnter>
+          <Routes>
+            <Route path="/" element={<Prototype />} />
+            <Route path="/private-outlet" element={<PrivateOutlet />}>
+              <Route path="" element={<Private />} />
+            </Route>
             <Route
-              render={({ location }) => (
-                <Switch location={location} key={location.key}>
-                  <Route path="/non-auth" component={NonAuthRoute} />
-                  <Route path="/404" component={NotFound} />
-                  <PrivateRoute path="/app" component={AppRouting} />
-                  <Route exact path="/" component={renderRootRedirect} />
-                </Switch>
-              )}
+              path="/private-nested"
+              element={
+                <PrivateRoute>
+                  <Private />
+                </PrivateRoute>
+              }
             />
-          </AnimatePresence>
-        </Suspense>
-      </Router>
-    </Fragment>
+            <Route path="/registration" element={<Registration />} />
+            <Route path="/signIn" element={<SignIn />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/leaderboard" element={<Leaderboard />} />
+            <Route path="/teamLineUp" element={<TeamLineUp />} />
+            <Route path="/matches" element={<Matches />} />
+          </Routes>
+        </AnimatePresence>
+      </Suspense>
+    </Router>
   );
 };
+
+const Private = () => <div>private</div>;
+
+function PrivateOutlet() {
+  const auth = useAuth();
+  return auth ? <Outlet /> : <Navigate to="/registration" />;
+}
+
+function PrivateRoute({ children }: any) {
+  const auth = useAuth();
+  return auth ? children : <Navigate to="/registration" />;
+}
+
+function useAuth() {
+  return true;
+}
 
 export default AppRouter;

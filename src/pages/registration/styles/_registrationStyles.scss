@@ -1,6 +1,5 @@
-/* variables */
 $border: 2px solid white;
-.prototype {
+.registration {
   box-sizing: border-box;
   position: relative;
   border: $border;
@@ -12,7 +11,7 @@ $border: 2px solid white;
   color: white;
   padding: 1rem;
 
-  .prototypeContainer {
+  .registrationContainer {
     box-sizing: border-box;
     position: relative;
     border: $border;
@@ -42,11 +41,6 @@ $border: 2px solid white;
         height: 100%;
         background: black;
         color: white;
-
-        &_link {
-          color: white;
-          text-decoration: none;
-        }
       }
     }
   }

@@ -1,27 +1,20 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Twitch } from "../../components";
 import "./styles/_prototypeStyles.scss";
 
 const Prototype = () => {
-  let historyApp = useHistory();
-  const handleClick = ({ path }: any) => {
-    historyApp.push(`/${path}`);
-  };
-
   const Buttons = () => (
     <div className="buttonContainers">
-      <button
-        className="buttonContainers__button"
-        onClick={() => handleClick("signIn")}
-      >
-        Sign In
+      <button className="buttonContainers__button">
+        <Link className="buttonContainers__button_link" to="/signIn">
+          <div className="buttonContainers__button_link_text">Sign In</div>
+        </Link>
       </button>
-      <button
-        onClick={() => handleClick("signUp")}
-        className="buttonContainers__button"
-      >
-        Sign Up
+      <button className="buttonContainers__button">
+        <Link className="buttonContainers__button_link" to="/signUp">
+          Registration
+        </Link>
       </button>
     </div>
   );

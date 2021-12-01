@@ -10,11 +10,11 @@ import "./theme/_style.scss";
 
 ReactDOM.render(
   <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <I18nextProvider i18n={i18next}>
-        <Routes />
-      </I18nextProvider>
-    </ConnectedRouter>
+    {/*<ConnectedRouter history={history}>*/}
+    <I18nextProvider i18n={i18next}>
+      <Routes />
+    </I18nextProvider>
+    {/*</ConnectedRouter>*/}
   </Provider>,
   document.getElementById("root")
 );
