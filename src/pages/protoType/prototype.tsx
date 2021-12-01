@@ -1,21 +1,37 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import { Twitch } from "../../components";
+import "./styles/_prototypeStyles.scss";
 
 const Prototype = () => {
+  let historyApp = useHistory();
+  const handleClick = ({ path }: any) => {
+    historyApp.push(`/${path}`);
+  };
+
+  const Buttons = () => (
+    <div className="buttonContainers">
+      <button
+        className="buttonContainers__button"
+        onClick={() => handleClick("signIn")}
+      >
+        Sign In
+      </button>
+      <button
+        onClick={() => handleClick("signUp")}
+        className="buttonContainers__button"
+      >
+        Sign Up
+      </button>
+    </div>
+  );
+
   return (
-    <div
-      style={{
-        border: "2px solid white",
-        width: "100%",
-        height: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        color: "white",
-        padding: "1rem",
-      }}
-    >
-      <Twitch />
+    <div className="prototype">
+      <div className="prototypeContainer">
+        <Twitch />
+        <Buttons />
+      </div>
     </div>
   );
 };

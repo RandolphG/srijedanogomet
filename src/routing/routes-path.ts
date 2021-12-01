@@ -2,21 +2,12 @@ import { lazy } from "react";
 import { CustomRoute } from "../types/";
 
 const ProtoType = lazy(() => import("../pages/protoType/prototype"));
+const SignIn = lazy(() => import("../pages/protoType/signInSignUp/signIn"));
+const SignUp = lazy(() => import("../pages/protoType/signInSignUp/signUp"));
 
-const GettingStarted = lazy(
-  () => import("../pages/protoType/gettingStarted/gettingStarted")
-);
-
-const Standings = lazy(
-  () => import("../components/common/standings/standings")
-);
-
-const Choose = lazy(() => import("../components/common/choose/choose"));
-
-export const PROTOTYPE_PATH = "/prototype";
-export const GETTING_STARTED_PATH = "/gettingStarted";
-export const CHOOSE_PATH = "/choose";
-export const STANDINGS_PATH = "/standings";
+export const PROTOTYPE_PATH = "/app/prototype";
+export const SIGN_IN_PATH = "/signIn";
+export const SIGN_UP_PATH = "/signUp";
 
 /**
  * Application routes
@@ -28,18 +19,13 @@ export const appRoutes: CustomRoute[] = [
     component: ProtoType,
   },
   {
-    path: GETTING_STARTED_PATH,
-    name: "GettingStarted",
-    component: GettingStarted,
+    path: SIGN_IN_PATH,
+    name: "SignIn",
+    component: SignIn,
   },
   {
-    path: STANDINGS_PATH,
-    name: "Standings",
-    component: Standings,
-  },
-  {
-    path: CHOOSE_PATH,
-    name: "Choose",
-    component: Choose,
+    path: SIGN_UP_PATH,
+    name: "SignUp",
+    component: SignUp,
   },
 ];

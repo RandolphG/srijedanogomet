@@ -25,7 +25,7 @@ const PrivateRoute: FC<IPrivateRoute> = ({ component: Component, ...rest }) => {
       return loggedIn ? (
         <Component {...props} />
       ) : (
-        <Redirect from="/" to="/frontPage" />
+        <Redirect from="/" to="/prototype" />
       );
     },
     [Component]

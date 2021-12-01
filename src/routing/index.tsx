@@ -6,8 +6,6 @@ import {
   Switch,
 } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
-import { Choose } from "../components";
-import { GettingStarted, Prototype } from "../pages";
 import { AppRouting, NonAuthRoute, NotFound, PrivateRoute } from "./components";
 
 /**
@@ -26,13 +24,10 @@ const AppRouter: FC = () => {
             <Route
               render={({ location }) => (
                 <Switch location={location} key={location.key}>
-                  <Route exact path="/" component={renderRootRedirect} />
-                  <PrivateRoute path="/app" component={AppRouting} />
                   <Route path="/non-auth" component={NonAuthRoute} />
-                  <Route exact path="/choose" component={Choose} />
-                  <Route exact path="/prototype" component={Prototype} />
                   <Route path="/404" component={NotFound} />
-                  <Redirect to="/404" />
+                  <PrivateRoute path="/app" component={AppRouting} />
+                  <Route exact path="/" component={renderRootRedirect} />
                 </Switch>
               )}
             />

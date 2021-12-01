@@ -1,0 +1,49 @@
+/* variables */
+$border: 2px solid white;
+.prototype {
+  box-sizing: border-box;
+  position: relative;
+  border: $border;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  padding: 1rem;
+
+  .prototypeContainer {
+    box-sizing: border-box;
+    position: relative;
+    border: $border;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 5rem;
+
+    .buttonContainers {
+      box-sizing: border-box;
+      border: $border;
+      width: 100%;
+      height: 10%;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      z-index: 100;
+
+      &__button {
+        cursor: pointer;
+        width: 100%;
+        height: 100%;
+        background: black;
+        color: white;
+        margin-top: 1rem;
+      }
+    }
+  }
+}

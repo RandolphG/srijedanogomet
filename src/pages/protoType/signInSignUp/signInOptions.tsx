@@ -3,7 +3,7 @@ import { SignInOptionViewModel } from "./signInOptionViewModel";
 
 const SignInOptions = () => {
   const { signInOptionsView } = SignInOptionViewModel();
-  return <div></div>;
+  return <div>signIn</div>;
 };
 
 export default SignInOptions;

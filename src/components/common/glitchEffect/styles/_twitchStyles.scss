@@ -1,19 +1,8 @@
-.glitchBackground {
-  background: black;
-  font-family: "Oswald", sans-serif;
-  font-style: italic;
-  overflow: hidden;
-  width: 100vw;
-  height: 100%;
-}
-
 .glitchContainer {
+  width: 100%;
+  height: 200px;
   border: 2px solid white;
   overflow: hidden;
-  position: absolute;
-  transform: translate(-50%, -50%);
-  top: 40%;
-  left: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,54 +11,56 @@
 .glitch {
   color: rgb(223, 191, 191);
   position: relative;
-  font-size: 9vw;
+  font-size: 3rem;
   animation: glitch 5s 5s infinite;
+
+  &:before {
+    content: attr(data-text);
+    position: absolute;
+    left: -2px;
+    text-shadow: -5px 0 magenta;
+    background: black;
+    overflow: hidden;
+    top: 0;
+    animation: noise-1 3s linear infinite alternate-reverse, glitch 5s 5.05s infinite;
+  }
+
+  &:after {
+    content: attr(data-text);
+    position: absolute;
+    left: 2px;
+    text-shadow: -5px 0 lightgreen;
+    background: black;
+    overflow: hidden;
+    top: 0;
+    animation: noise-2 3s linear infinite alternate-reverse, glitch 5s 5s infinite;
+  }
 }
 
-.glitch::before {
-  content: attr(data-text);
-  position: absolute;
-  left: -2px;
-  text-shadow: -5px 0 magenta;
-  background: black;
-  overflow: hidden;
-  top: 0;
-  animation: noise-1 3s linear infinite alternate-reverse, glitch 5s 5.05s infinite;
-}
-
-.glitch::after {
-  content: attr(data-text);
-  position: absolute;
-  left: 2px;
-  text-shadow: -5px 0 lightgreen;
-  background: black;
-  overflow: hidden;
-  top: 0;
-  animation: noise-2 3s linear infinite alternate-reverse, glitch 5s 5s infinite;
-}
 
 .scanlines {
   overflow: hidden;
   mix-blend-mode: difference;
+
+  &:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+
+    background: repeating-linear-gradient(
+                    to bottom,
+                    transparent 0%,
+                    rgba(255, 255, 255, 0.05) .5%,
+                    transparent 1%
+    );
+
+    animation: fudge 7s ease-in-out alternate infinite;
+  }
 }
 
-.scanlines::before {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-
-  background: repeating-linear-gradient(
-                  to bottom,
-                  transparent 0%,
-                  rgba(255, 255, 255, 0.05) .5%,
-                  transparent 1%
-  );
-
-  animation: fudge 7s ease-in-out alternate infinite;
-}
 
 .glow {
   @extend .glitch;
@@ -80,16 +71,22 @@
 }
 
 .subtitle {
-  z-index: 1000;
   font-family: Arial, Helvetica, sans-serif;
-  font-weight: 100;
-  font-size: .9vw;
-  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.1vw;
+  color: rgba(255, 255, 255, 0.9);
   text-transform: uppercase;
-  letter-spacing: 1em;
+  letter-spacing: .8em;
   text-align: center;
   left: 17%;
+  margin-top: .25rem;
   animation: glitch-2 5s 5.02s infinite;
+}
+
+.twitchMessage {
+  width: 70%;
+  font-size: 1.2rem;
+  color: white;
+  margin-top: .4rem;
 }
 
 @keyframes glitch-2 {
