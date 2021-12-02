@@ -1,8 +1,31 @@
 import React from "react";
 import "./styles/_signInStyles.scss";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const SignIn = () => {
+  const springTransition = {
+    type: "spring",
+    stiffness: 100,
+    damping: 15,
+  };
+
+  const motionSettings = {
+    initial: {
+      opacity: 0,
+      x: "-50vw",
+    },
+    animate: {
+      opacity: 1,
+      x: 0,
+      transition: springTransition,
+    },
+    exit: {
+      opacity: 0,
+      x: "50vw",
+    },
+  };
+
   const Buttons = () => (
     <div className="buttonContainers">
       <button className="buttonContainers__button">
@@ -19,10 +42,10 @@ const SignIn = () => {
   );
   return (
     <div className="signIn">
-      <div className="signInContainer">
+      <motion.div key="signUp" {...motionSettings} className="signInContainer">
         <div className="signInTitle">Sign In</div>
         <Buttons />
-      </div>
+      </motion.div>
     </div>
   );
 };

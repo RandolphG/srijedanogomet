@@ -17,9 +17,7 @@ const Twitch = () => {
   );
 
   const Message = () => (
-    <p className="twitchMessage">
-      Discover Srijeda Football Club. All your favorite players in one place.
-    </p>
+    <p className="twitchMessage">All your favorite players in one place.</p>
   );
 
   return (

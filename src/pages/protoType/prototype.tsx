@@ -12,7 +12,7 @@ const Prototype = () => {
         </Link>
       </button>
       <button className="buttonContainers__button">
-        <Link className="buttonContainers__button_link" to="/signUp">
+        <Link className="buttonContainers__button_link" to="/registration">
           Registration
         </Link>
       </button>

@@ -24,6 +24,19 @@ const TeamLineUp = () => {
     </div>
   );
 
+  const ease = [0.6, -0.05, 0.01, 0.99];
+  const duration = 1.0;
+  const transition = {
+    duration,
+    ease,
+  };
+
+  const springTransition = {
+    type: "spring",
+    stiffness: 100,
+    damping: 15,
+  };
+
   const motionSettings = {
     initial: {
       opacity: 0,
@@ -32,11 +45,7 @@ const TeamLineUp = () => {
     animate: {
       opacity: 1,
       x: 0,
-      transaction: {
-        type: "spring",
-        stiffness: 100,
-        damping: 15,
-      },
+      transition: springTransition,
     },
     exit: {
       opacity: 0,
@@ -45,8 +54,12 @@ const TeamLineUp = () => {
   };
 
   return (
-    <div key="teamLineUp" className="teamLineUp">
-      <motion.div {...motionSettings} className="teamLineUpContainer">
+    <div className="teamLineUp">
+      <motion.div
+        key="teamLineUp"
+        {...motionSettings}
+        className="teamLineUpContainer"
+      >
         <div className="teamLineUpTitle">Team Lineup</div>
         <Buttons />
       </motion.div>
