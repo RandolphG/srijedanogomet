@@ -58,7 +58,11 @@ const Matches = () => {
         {...motionSettings}
         className="matchesContainer"
       >
-        <div className="matchesTitle">Matches</div>
+        <div className="matchesTitle">SRIJEDA LEAGUE</div>
+        <div className="matchesTitle">WEEK 12</div>
+        <div className="matchesTitle">MATCH PREVIEW</div>
+        <div className="matchesTitle">OPTIONS</div>
+        <div className="matchesTitle">LIST OF STATS</div>
         <Buttons />
       </motion.div>
     </div>

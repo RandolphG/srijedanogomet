@@ -49,11 +49,58 @@ const Dashboard = () => {
     </button>
   );
 
+  const imeMotion = {
+    initial: {
+      opacity: 0,
+      x: -40,
+    },
+    animate: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        delay: 0.2,
+        duration: 0.5,
+        ease: "easeInOut",
+      },
+    },
+    exit: {
+      opacity: 0,
+      x: 40,
+    },
+  };
+
+  const prezimeMotion = {
+    initial: {
+      opacity: 0,
+      x: 40,
+    },
+    animate: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        delay: 0.3,
+        duration: 0.5,
+        ease: "easeInOut",
+      },
+    },
+    exit: {
+      opacity: 0,
+      x: -40,
+    },
+  };
+
   const PlayerImageSection = () => {
     const Name = () => (
       <div className="playerImageSection__name">
-        <div className="playerImageSection__name_ime">MARIO</div>
-        <div className="playerImageSection__name_prezime">BERDIC</div>
+        <motion.div {...imeMotion} className="playerImageSection__name_ime">
+          MARIO
+        </motion.div>
+        <motion.div
+          {...prezimeMotion}
+          className="playerImageSection__name_prezime"
+        >
+          BERDIC
+        </motion.div>
       </div>
     );
 
@@ -309,23 +356,26 @@ const Dashboard = () => {
     },
     exit: {
       opacity: 0,
+      transition,
     },
   };
 
   return (
-    <div key="dashboard" className="dashboard">
-      <motion.div
-        key="dashboard"
-        {...motionSettings}
-        className="dashboardContainer"
-      >
-        <BackButton />
-        <PlayerImageSection />
-        <PlayerSpecsButtons />
-        <PlayerStats />
-        <Buttons />
-      </motion.div>
-    </div>
+    <AnimatePresence exitBeforeEnter>
+      <div key="dashboard" className="dashboard">
+        <motion.div
+          key="dashboard"
+          {...motionSettings}
+          className="dashboardContainer"
+        >
+          <BackButton />
+          <PlayerImageSection />
+          <PlayerSpecsButtons />
+          <PlayerStats />
+          <Buttons />
+        </motion.div>
+      </div>
+    </AnimatePresence>
   );
 };
 

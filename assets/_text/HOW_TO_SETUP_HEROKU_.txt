@@ -13,7 +13,7 @@ build project
 -> add & commit changes
 -> git push heroku master
 
-https://animafiaduanaorg.herokuapp.com/
+https://srijeda-nogomet.herokuapp.com/
 
 Deploying React Node TypeScript App On Heroku with Github Integration:
 https://funnelgarden.com/deploying-react-node-typescript-heroku-github/#Deployment_Gotchas
