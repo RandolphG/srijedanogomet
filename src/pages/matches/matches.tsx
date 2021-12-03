@@ -4,6 +4,33 @@ import { Link } from "react-router-dom";
 import "./styles/_matchesStyles.scss";
 
 const Matches = () => {
+  const Buttons = () => (
+    <div className="matchesButtonContainers">
+      <button className="matchesButtonContainers__button">
+        <Link className="matchesButtonContainers__button_link" to="/dashboard">
+          Dashboard
+        </Link>
+      </button>
+      <button className="matchesButtonContainers__button">
+        <Link className="matchesButtonContainers__button_link" to="/teamLineUp">
+          Team Line-Up
+        </Link>
+      </button>
+      <button className="matchesButtonContainers__button">
+        <Link className="matchesButtonContainers__button_link" to="/matches">
+          Match Statistics
+        </Link>
+      </button>
+      <button className="matchesButtonContainers__button">
+        <Link
+          className="matchesButtonContainers__button_link"
+          to="/leaderboard"
+        >
+          Leaderboard
+        </Link>
+      </button>
+    </div>
+  );
   const ease = [0.6, -0.05, 0.01, 0.99];
   const duration = 1.0;
   const transition = {
@@ -11,7 +38,7 @@ const Matches = () => {
     ease,
   };
 
-  const animationSettings = {
+  const motionSettings = {
     initial: {
       opacity: 0,
     },
@@ -19,34 +46,19 @@ const Matches = () => {
       opacity: 1,
       transition,
     },
-    exit: { opacity: 0, transition },
+    exit: {
+      opacity: 0,
+    },
   };
 
-  const Buttons = () => (
-    <div className="buttonContainers">
-      <button className="buttonContainers__button">
-        <Link className="buttonContainers__button_link" to="/dashboard">
-          Dashboard
-        </Link>
-      </button>
-      <button className="buttonContainers__button">
-        <Link className="buttonContainers__button_link" to="/teamLineUp">
-          Team Line-Up
-        </Link>
-      </button>
-      <button className="buttonContainers__button">
-        <Link className="buttonContainers__button_link" to="/leaderboard">
-          Leaderboard
-        </Link>
-      </button>
-    </div>
-  );
   return (
     <div className="matches">
-      <motion.div className="matchesContainer">
-        <div key="matchesTitle" {...animationSettings} className="matchesTitle">
-          Matches
-        </div>
+      <motion.div
+        key="matches"
+        {...motionSettings}
+        className="matchesContainer"
+      >
+        <div className="matchesTitle">Matches</div>
         <Buttons />
       </motion.div>
     </div>

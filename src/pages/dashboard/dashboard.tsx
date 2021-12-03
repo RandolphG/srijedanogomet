@@ -83,6 +83,14 @@ const Dashboard = () => {
       <button className="dashboardButtonContainers__button">
         <Link
           className="dashboardButtonContainers__button_link"
+          to="/dashboard"
+        >
+          Dashboard
+        </Link>
+      </button>
+      <button className="dashboardButtonContainers__button">
+        <Link
+          className="dashboardButtonContainers__button_link"
           to="/teamLineUp"
         >
           Team Line-Up
@@ -284,15 +292,39 @@ const Dashboard = () => {
     </Fragment>
   );
 
+  const ease = [0.6, -0.05, 0.01, 0.99];
+  const duration = 1.0;
+  const transition = {
+    duration,
+    ease,
+  };
+
+  const motionSettings = {
+    initial: {
+      opacity: 0,
+    },
+    animate: {
+      opacity: 1,
+      transition,
+    },
+    exit: {
+      opacity: 0,
+    },
+  };
+
   return (
     <div key="dashboard" className="dashboard">
-      <div className="dashboardContainer">
+      <motion.div
+        key="dashboard"
+        {...motionSettings}
+        className="dashboardContainer"
+      >
         <BackButton />
         <PlayerImageSection />
         <PlayerSpecsButtons />
         <PlayerStats />
         <Buttons />
-      </div>
+      </motion.div>
     </div>
   );
 };

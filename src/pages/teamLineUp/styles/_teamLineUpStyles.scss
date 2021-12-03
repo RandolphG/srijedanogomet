@@ -28,13 +28,15 @@ $border: 2px solid white;
       margin-bottom: 1rem;
     }
 
-    .buttonContainers {
+    .teamLineUpButtonContainers {
+      position: absolute;
+      bottom: 1rem;
       box-sizing: border-box;
       border: $border;
       width: 100%;
-      height: 15%;
+      height: 10%;
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       justify-content: center;
       align-items: center;
       color: white;
@@ -49,7 +51,6 @@ $border: 2px solid white;
         color: white;
 
         &_link {
-          background: #ee7752;
           width: 100%;
           height: 100%;
           color: white;

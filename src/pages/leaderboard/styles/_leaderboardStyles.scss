@@ -19,22 +19,55 @@ $border: 2px solid white;
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     padding: 0 4rem;
+    border: #ee7752 2px solid;
 
     .leaderboardTitle {
       font-size: 2rem;
       margin-bottom: 1rem;
     }
 
-    .buttonContainers {
+    &_preview {
+      box-sizing: border-box;
+      border: #23d5ab 2px solid;
+      width: 100%;
+      height: 30%;
+      margin-bottom: .5rem;
+    }
+
+    &_list{
+      box-sizing: border-box;
+      border: #23d5ab 2px solid;
+      width: 100%;
+      height: 30%;
+      display: flex;
+      flex-direction: column;
+
+      &_element{
+        box-sizing: border-box;
+        border: #23d5ab 2px solid;
+        width: 100%;
+        height: 8%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: .1rem;
+        padding: 0 1rem;
+        font-size: 1.5rem;
+      }
+    }
+
+    .leaderboardButtonContainers {
+      position: absolute;
+      bottom: 1rem;
       box-sizing: border-box;
       border: $border;
       width: 100%;
-      height: 15%;
+      height: 10%;
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       justify-content: center;
       align-items: center;
       color: white;
