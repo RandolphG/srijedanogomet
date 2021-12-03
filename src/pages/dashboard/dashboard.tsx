@@ -104,6 +104,17 @@ const Dashboard = () => {
     </div>
   );
 
+  const profileInfo = [
+    { name: "COUNTRY", value: "Croatia" },
+    { name: "NICKNAME", value: "..." },
+    { name: "HEIGHT", value: 182 },
+    { name: "WEIGHT", value: "106kg" },
+    { name: "HOMETOWN", value: "Zagreb" },
+    { name: "POSITION", value: "VERSATILE" },
+    { name: "FAVORITE CLUB", value: "Dinamo Zagreb" },
+    { name: "SIGNED", value: "SRIJEDA FC" },
+  ];
+
   const Profile = () => {
     return (
       <AnimatePresence initial={false} exitBeforeEnter>
@@ -113,17 +124,25 @@ const Dashboard = () => {
           exit={{ opacity: 0 }}
           className="profile"
         >
-          <h1>PROFILE</h1>
           <div className="profile_info">
-            <div className="profile_info_basic">
-              <div>Country</div>
-              <div>nickname</div>
-              <div>height</div>
-              <div>Weight </div>
-              <div>Hometown</div>
-              <div>Position</div>
-              <div>Favorite Club</div>
-              <div>Signed</div>
+            <div className="profile_info_title">PROFILE</div>
+            <div className="profile_info_container">
+              <div className="profile_info_container_details">
+                {profileInfo.map((info, idx) => (
+                  <div
+                    key={idx}
+                    className="profile_info_container_details_detail"
+                  >
+                    <div className="profile_info_container_details_detail_name">
+                      {info.name}
+                    </div>
+                    <div className="profile_info_container_details_detail_value">
+                      {info.value}
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div>ACHIEVEMENTS</div>
             </div>
           </div>
         </motion.div>
