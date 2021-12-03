@@ -2,8 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const graphqlHttp = require("express-graphql").graphqlHTTP;
 const mongoose = require("mongoose");
-const graphqlSchema = require("./graphql/schema");
-const graphqlResolvers = require("./graphql/resolvers");
+const schema = require("./schema");
+const graphqlResolvers = require("./resolvers");
 const isAuth = require("./middleware/isAuth");
 const app = express();
 const host = "0.0.0.0";
@@ -31,15 +31,13 @@ app.use(isAuth);
 app.use(
   "/graphql",
   graphqlHttp({
-    schema: graphqlSchema,
+    schema,
     rootValue: graphqlResolvers,
     graphiql: true,
   })
 );
 
 app.use(express.static("build"));
-
-console.log(`${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}`);
 
 const uri = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.f466e.gcp.mongodb.net/${process.env.MONGO_DB}?retryWrites=true&w=majority`;
 

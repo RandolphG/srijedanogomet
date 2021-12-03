@@ -1,6 +1,6 @@
-const Article = require("../../models/articles");
-const User = require("../../models/users");
-const Event = require("../../models/event");
+const Article = require("../models/articles");
+const User = require("../models/users");
+const Event = require("../models/event");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
