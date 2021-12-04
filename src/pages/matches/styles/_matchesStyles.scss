@@ -1,4 +1,5 @@
 $border: 2px solid white;
+
 .matches {
   box-sizing: border-box;
   position: relative;
@@ -19,13 +20,84 @@ $border: 2px solid white;
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     padding: 0 4rem;
 
     .matchesTitle {
       font-size: 2rem;
       margin-bottom: 1rem;
+    }
+
+    &_options{
+      border: white 2px solid;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+      height: 5%;
+      width: 100%;
+      margin-top: 1rem;
+      padding: .5rem 0;
+      &_option {
+        border: white 2px solid;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 25%;
+      }
+    }
+
+    &_matchPreview {
+      box-sizing: border-box;
+      border: white 2px solid;
+      border-radius: 1rem;
+      height: 25%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      &_title {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+      }
+
+      &_teamsInfo {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        border: white 2px solid;
+        height: 65%;
+        width: 80%;
+
+        &_team1 {
+          border: white 2px solid;
+          width: 40%;
+        }
+
+        &_score {
+          border: white 2px solid;
+          width: 20%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          font-size: 1.6rem;
+
+          &_values {
+            font-size: 2.5rem;
+            color: yellow;
+          }
+        }
+
+        &_team2 {
+          border: white 2px solid;
+          width: 40%;
+        }
+      }
     }
 
     .matchesButtonContainers {

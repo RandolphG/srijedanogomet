@@ -29,8 +29,8 @@ $ yarn or npm i
 $ yarn start or npm start
 ```
 
-## *Application Sections (Pages)*
-Application state is split mainly in three parts.
+## *Application Sections*
+Application is split mainly in four parts.
 - Dashboard
 - Match Statistics
 - Team LineUp

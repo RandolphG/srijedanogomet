@@ -58,10 +58,38 @@ const Matches = () => {
         {...motionSettings}
         className="matchesContainer"
       >
-        <div className="matchesTitle">SRIJEDA LEAGUE</div>
-        <div className="matchesTitle">WEEK 12</div>
-        <div className="matchesTitle">MATCH PREVIEW</div>
-        <div className="matchesTitle">OPTIONS</div>
+        <div className="matchesTitle">
+          <div>SRIJEDA LEAGUE</div>
+          <div>WEEK 12</div>
+        </div>
+        <div className="matchesContainer_matchPreview">
+          <div className="matchesContainer_matchPreview_title">
+            MATCH PREVIEW
+          </div>
+          <div className="matchesContainer_matchPreview_teamsInfo">
+            <div className="matchesContainer_matchPreview_teamsInfo_team1">
+              <div className="matchesContainer_matchPreview_teamsInfo_team1_text">
+                Team #1
+              </div>
+            </div>
+
+            <div className="matchesContainer_matchPreview_teamsInfo_score">
+              <div className="matchesContainer_matchPreview_teamsInfo_score_values">
+                0 : 3
+              </div>
+            </div>
+            <div className="matchesContainer_matchPreview_teamsInfo_team2">
+              <div className="matchesContainer_matchPreview_teamsInfo_team2_text">
+                Team #2
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="matchesContainer_options">
+          <div className="matchesContainer_options_option">OPTIONS</div>
+          <div className="matchesContainer_options_option">OPTIONS</div>
+          <div className="matchesContainer_options_option">OPTIONS</div>
+        </div>
         <div className="matchesTitle">LIST OF STATS</div>
         <Buttons />
       </motion.div>
