@@ -1,19 +1,13 @@
 import React, { Fragment, MouseEvent } from "react";
 import { Link } from "react-router-dom";
 import "./styles/_dashboardStyles.scss";
-import { resourceImages } from "../../resources";
 import { AnimatePresence, motion } from "framer-motion";
+import { ImageSection } from "./components";
 import { DashboardViewModel } from "./dashboardViewModel";
 
 const Dashboard = () => {
-  const {
-    motionSettings,
-    imeMotion,
-    prezimeMotion,
-    infoViews,
-    displayNone,
-    playerStatStyle,
-  } = DashboardViewModel();
+  const { motionSettings, infoViews, displayNone, playerStatStyle } =
+    DashboardViewModel();
   const [currentView, setView] = React.useState(1);
 
   /**
@@ -57,42 +51,6 @@ const Dashboard = () => {
       </Link>
     </button>
   );
-
-  const PlayerImageSection = () => {
-    const Name = () => (
-      <div className="playerImageSection__name">
-        <motion.div {...imeMotion} className="playerImageSection__name_ime">
-          MARIO
-        </motion.div>
-        <motion.div
-          {...prezimeMotion}
-          className="playerImageSection__name_prezime"
-        >
-          BERDIC
-        </motion.div>
-      </div>
-    );
-
-    const Number = () => <div className="playerNumber">#19</div>;
-
-    const PlayerImage = () => (
-      <div className="playerImage">
-        <img
-          className="playerImage_image"
-          src={resourceImages.raheemSterling}
-          alt="player"
-        />
-      </div>
-    );
-
-    return (
-      <div className="playerImageSection">
-        <Number />
-        <Name />
-        <PlayerImage />
-      </div>
-    );
-  };
 
   const Buttons = () => (
     <div className="dashboardButtonContainers">
@@ -145,20 +103,26 @@ const Dashboard = () => {
     </Fragment>
   );
 
+  const Container = ({ children }: any) => (
+    <motion.div
+      key="dashboard"
+      {...motionSettings}
+      className="dashboardContainer"
+    >
+      {children}
+    </motion.div>
+  );
+
   return (
     <AnimatePresence exitBeforeEnter>
       <div key="dashboard" className="dashboard">
-        <motion.div
-          key="dashboard"
-          {...motionSettings}
-          className="dashboardContainer"
-        >
+        <Container>
           {/*<BackButton />*/}
-          <PlayerImageSection />
+          <ImageSection />
           <PlayerSpecsButtons />
           <PlayerStats />
           <Buttons />
-        </motion.div>
+        </Container>
       </div>
     </AnimatePresence>
   );

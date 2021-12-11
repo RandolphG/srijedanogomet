@@ -13,16 +13,13 @@ const SignIn = () => {
   const motionSettings = {
     initial: {
       opacity: 0,
-      x: "-50vw",
     },
     animate: {
       opacity: 1,
       x: 0,
-      transition: springTransition,
     },
     exit: {
       opacity: 0,
-      x: "50vw",
     },
   };
 

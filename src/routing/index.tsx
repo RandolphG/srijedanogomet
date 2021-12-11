@@ -7,15 +7,10 @@ import {
   Routes,
 } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
-import {
-  Dashboard,
-  Leaderboard,
-  Matches,
-  Prototype,
-  Registration,
-  SignIn,
-  TeamLineUp,
-} from "../pages";
+import { Players } from "../pages/players";
+import { Player } from "../pages/players/player";
+import { PlayerGallery } from "../pages/players/playerGallery";
+import { Registration } from "../pages/registration";
 
 /**
  * application router
@@ -26,26 +21,13 @@ const AppRouter: FC = () => {
   return (
     <Router>
       <Suspense fallback={<></>}>
-        <AnimatePresence exitBeforeEnter>
+        <AnimatePresence exitBeforeEnter initial={false}>
           <Routes>
-            <Route path="/" element={<Prototype />} />
-            <Route path="/private-outlet" element={<PrivateOutlet />}>
-              <Route path="" element={<Private />} />
+            <Route path="/" element={<Registration />} />
+            <Route path="/player" element={<Players />}>
+              <Route path="/player" element={<PlayerGallery />} />
+              <Route path="/player/image/:id" element={<Player />} />
             </Route>
-            <Route
-              path="/private-nested"
-              element={
-                <PrivateRoute>
-                  <Private />
-                </PrivateRoute>
-              }
-            />
-            <Route path="/registration" element={<Registration />} />
-            <Route path="/signIn" element={<SignIn />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/leaderboard" element={<Leaderboard />} />
-            <Route path="/teamLineUp" element={<TeamLineUp />} />
-            <Route path="/matches" element={<Matches />} />
           </Routes>
         </AnimatePresence>
       </Suspense>
