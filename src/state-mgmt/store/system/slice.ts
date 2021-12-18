@@ -8,15 +8,16 @@ const initState: ISystemState = {
   status: "",
   token: "",
   name: "",
-  showModal: true,
-  showSignInModal: false,
   isLoggedIn: true,
   loggedInStatus: { userId: null, status: false, token: null },
+  teams: ["team-0"],
 };
 
 export const systemSlice = createSlice({
   name: "system",
-  initialState: initState as ISystemState,
+  initialState: initState,
+  // @ts-ignore
+
   reducers,
 });
 

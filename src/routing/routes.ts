@@ -1,22 +1,15 @@
 import { lazy } from "react";
-const ProtoType = lazy(() => import("../pages/protoType/prototype"));
-const SignIn = lazy(() => import("../pages/signIn/signIn"));
+const Registration = lazy(() => import("../pages/registration/registration"));
 
-export const PROTOTYPE_PATH = "/app/prototype";
-export const SIGN_IN_PATH = "/signIn";
+export const REGISTRATION_PATH = "/registration";
 
 /**
  *  Routes
  */
 export const appRoutes: any[] = [
   {
-    path: PROTOTYPE_PATH,
-    name: "Prototype",
-    component: ProtoType,
-  },
-  {
-    path: SIGN_IN_PATH,
-    name: "SignIn",
-    component: SignIn,
+    path: REGISTRATION_PATH,
+    name: "Registration",
+    component: Registration,
   },
 ];

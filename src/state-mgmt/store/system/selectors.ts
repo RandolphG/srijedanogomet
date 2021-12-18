@@ -6,21 +6,8 @@ const selectSystemState = (state: IState) => {
   return state;
 };
 
-/* modal state */
-export const selectShowModal = createSelector(selectSystemState, (state) => {
-  return state.system.showModal;
-});
-
 /* loggedIn state */
 export const getLoggedInState = createSelector(
   selectSystemState,
   (state) => state.system.isLoggedIn
-);
-
-/* SignIn state */
-export const getSignInModalState = createSelector(
-  selectSystemState,
-  (state) => {
-    return state.system.showSignInModal;
-  }
 );

@@ -1,1 +1,1 @@
-export { Players } from "./players";
+export { Registration } from "./registration";

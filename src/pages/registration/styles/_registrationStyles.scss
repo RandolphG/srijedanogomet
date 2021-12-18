@@ -1,47 +1,111 @@
-$border: 2px solid white;
 .registration {
   box-sizing: border-box;
-  position: relative;
-  border: $border;
-  width: 100%;
-  height: 100vh;
+  border: #ee7752 1px solid;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100vh;
+  width: 100%;
   color: white;
-  padding: 1rem;
 
-  .registrationContainer {
+  &_container {
     box-sizing: border-box;
-    position: relative;
-    border: $border;
-    width: 100%;
-    height: 100%;
+    border: #23d5ab 1px solid;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 0 4rem;
+    height: 90%;
+    width: 90%;
 
-    .buttonContainers {
-      box-sizing: border-box;
-      border: $border;
-      width: 100%;
-      height: 15%;
+    &_max {
+      border: #ee7752 1px solid;
+      height: 60%;
+      width: 60%;
+      padding: 0 1rem;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: white;
-      z-index: 100;
 
-      &__button {
-        cursor: pointer;
-        width: 100%;
-        height: 100%;
-        background: black;
-        color: white;
+
+      &_title {
+        font-weight: bold;
+        margin-bottom: 1rem;
+      }
+
+      &_editButton {
+        color: grey;
+        font-size: 1.5rem;
+        font-family: "exoMediumItalic", sans-serif;
+        margin-bottom: 1rem;
+        /* Extra large devices (large laptops and desktops, 1200px and up) */
+        @media only screen and (min-width: 1200px) {
+
+          color: green;
+          font-size: 5rem;
+        }
+      }
+
+      &_label {
+        font-size: 1.5rem;
+        border-radius: .25rem;
+        padding: 0 .5rem;
+        color: grey;
+      }
+
+      &_labelEmail {
+        font-size: 1.5rem;
+        font-family: "exoMediumItalic", sans-serif;
+        border-radius: .25rem;
+        padding: 0 .5rem;
+        background: white;
+        color: grey;
+      }
+
+      &_labelName {
+        font-size: 1.5rem;
+        font-family: "exoMediumItalic", sans-serif;
+        border-radius: .25rem;
+        padding: 0 .5rem;
+        background: white;
+        color: grey;
+      }
+
+      &_labelHeight {
+        font-size: 1.5rem;
+        font-family: "exoMediumItalic", sans-serif;
+        border-radius: .25rem;
+        padding: 0 .5rem;
+        background: white;
+        color: grey;
+      }
+
+
+      &_input {
+        border-radius: .25rem;
+        padding: 0 .5rem;
+        background: white;
+        color: grey;
       }
     }
+  }
+
+  /* Extra small devices (phones, 600px and down) */
+  @media only screen and (max-width: 600px) {
+  }
+
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+  @media only screen and (min-width: 600px) {
+  }
+
+  /* Medium devices (landscape tablets, 768px and up) */
+  @media only screen and (min-width: 768px) {
+  }
+
+  /* Large devices (laptops/desktops, 992px and up) */
+  @media only screen and (min-width: 992px) {
+  }
+
+  /* Extra large devices (large laptops and desktops, 1200px and up) */
+  @media only screen and (min-width: 1200px) {
+    font-size: 5em;
   }
 }

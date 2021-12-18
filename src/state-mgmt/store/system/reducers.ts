@@ -6,6 +6,8 @@ import {
   IModalState,
   ISignInModalState,
   ISystemState,
+  ITeamId,
+  ITeamState,
   IUserInput,
 } from "../../../types/";
 
@@ -63,5 +65,16 @@ export const reducers = {
     action: PayloadAction<ICredentialsState>
   ) => {
     return { ...state, userName: action.payload.credentials.userName };
+  },
+  requestAddTeam: (state: ISystemState, action: PayloadAction<ITeamState>) => {
+    const { payload } = action;
+    const teams = `board-${payload}`;
+
+    return { ...state, teams };
+  },
+  requestRemoveTeam: (state: ISystemState, action: PayloadAction<ITeamId>) => {
+    const { teamId } = action.payload;
+    const newState = state;
+    return newState.teams.filter((val) => val !== teamId);
   },
 };

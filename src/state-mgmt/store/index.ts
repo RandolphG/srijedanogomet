@@ -1,5 +1,9 @@
 import { finalActions, ISystemState, RootState } from "../../types";
 import systemReducer from "./system/slice";
+import playersReducer from "./players/slice";
+import teamsReducer from "./teams/slice";
+import leaguesReducer from "./leagues/slice";
+import dashboardReducer from "./dashboard/slice";
 
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { createBrowserHistory } from "history";
@@ -19,6 +23,10 @@ export const history = createBrowserHistory<RouterState<ISystemState>>();
 export const rootReducer = combineReducers({
   router: connectRouter<RouterState<ISystemState>>(history),
   system: systemReducer,
+  player: playersReducer,
+  teams: teamsReducer,
+  leagues: leaguesReducer,
+  dashboard: dashboardReducer,
 });
 
 const epicMiddleware = createEpicMiddleware<
@@ -42,5 +50,9 @@ function configureAppStore(initialState?: any) {
 export const store = configureAppStore();
 
 export * from "./system";
+export * from "./teams";
+export * from "./players";
+export * from "./leagues";
+export * from "./dashboard";
 
 epicMiddleware.run(epics);

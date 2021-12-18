@@ -10,9 +10,17 @@ import {
   requestLoginSuccessAction,
   rootReducer,
 } from "../state-mgmt/store";
+import { Dashboard } from "../state-mgmt/store/dashboard/types";
+import { ILeagues } from "../state-mgmt/store/leagues/types";
+import { IPlayers } from "../state-mgmt/store/players/types";
+import { ITeams } from "../state-mgmt/store/teams/types";
 
 export interface IState {
   system: ISystemState;
+  players: IPlayers;
+  teams: ITeams;
+  leagues: ILeagues;
+  dashboard: Dashboard;
   router: (
     history: History<RouterState<ISystemState>>
   ) => Reducer<RouterState<RouterState<ISystemState>>>;
@@ -24,10 +32,9 @@ export interface ISystemState {
   token: string;
   name: string;
   userName: string;
-  showModal: TShowModal;
-  showSignInModal: TShowSignInModal;
   isLoggedIn: boolean;
   loggedInStatus: ILoggedInStatus;
+  teams: string[];
 }
 
 export interface ILoggedInStatus {
@@ -67,6 +74,14 @@ export interface ICredentialsState {
     email: string;
     password: string;
   };
+}
+
+export interface ITeamState {
+  team: string;
+}
+
+export interface ITeamId {
+  teamId: string;
 }
 
 export interface ISignInModalState {

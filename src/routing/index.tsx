@@ -7,10 +7,7 @@ import {
   Routes,
 } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
-import { Players } from "../pages/players";
-import { Player } from "../pages/players/player";
-import { PlayerGallery } from "../pages/players/playerGallery";
-import { Registration } from "../pages/registration";
+import { Registration } from "../pages";
 
 /**
  * application router
@@ -24,10 +21,6 @@ const AppRouter: FC = () => {
         <AnimatePresence exitBeforeEnter initial={false}>
           <Routes>
             <Route path="/" element={<Registration />} />
-            <Route path="/player" element={<Players />}>
-              <Route path="/player" element={<PlayerGallery />} />
-              <Route path="/player/image/:id" element={<Player />} />
-            </Route>
           </Routes>
         </AnimatePresence>
       </Suspense>

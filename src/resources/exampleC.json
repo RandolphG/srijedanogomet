@@ -1,0 +1,8 @@
+{
+  "activeLeague": "srijeda-nogomet",
+  "league-0": {
+    "id": "srijeda-nogomet",
+    "teams": ["team-1", "team-2"],
+    "name": "Srijeda Nogomet"
+  }
+}
