@@ -18,15 +18,17 @@
     width: 90%;
 
     &_max {
+      overflow: hidden;
       border: #ee7752 1px solid;
       height: 60%;
-      width: 60%;
+      width: 80%;
       padding: 0 1rem;
       display: flex;
       flex-direction: column;
 
 
       &_title {
+        text-align: center;
         font-weight: bold;
         margin-bottom: 1rem;
       }
@@ -35,11 +37,9 @@
         color: grey;
         font-size: 1.5rem;
         font-family: "exoMediumItalic", sans-serif;
-        margin-bottom: 1rem;
+        margin-top: 1rem;
         /* Extra large devices (large laptops and desktops, 1200px and up) */
         @media only screen and (min-width: 1200px) {
-
-          color: green;
           font-size: 5rem;
         }
       }
@@ -49,6 +49,9 @@
         border-radius: .25rem;
         padding: 0 .5rem;
         color: grey;
+        @media only screen and (min-width: 1200px) {
+          font-size: 5rem;
+        }
       }
 
       &_labelEmail {
@@ -58,6 +61,21 @@
         padding: 0 .5rem;
         background: white;
         color: grey;
+        @media only screen and (min-width: 1200px) {
+          font-size: 5rem;
+        }
+      }
+
+      &_labelPassword {
+        font-size: 1.5rem;
+        font-family: "exoMediumItalic", sans-serif;
+        border-radius: .25rem;
+        padding: 0 .5rem;
+        background: white;
+        color: grey;
+        @media only screen and (min-width: 1200px) {
+          font-size: 5rem;
+        }
       }
 
       &_labelName {
@@ -67,6 +85,9 @@
         padding: 0 .5rem;
         background: white;
         color: grey;
+        @media only screen and (min-width: 1200px) {
+          font-size: 5rem;
+        }
       }
 
       &_labelHeight {
@@ -76,8 +97,12 @@
         padding: 0 .5rem;
         background: white;
         color: grey;
-      }
+        /* Extra large devices (large laptops and desktops, 1200px and up) */
+        @media only screen and (min-width: 1200px) {
+          font-size: 5rem;
 
+        }
+      }
 
       &_input {
         border-radius: .25rem;

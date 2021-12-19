@@ -39,9 +39,12 @@ app.use(
 
 app.use(express.static("build"));
 
-const uri = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.f466e.gcp.mongodb.net/${process.env.MONGO_DB}?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://nogomet:ASDFGFDSA123@cluster0.f466e.gcp.mongodb.net/test?retryWrites=true&w=majority`;
 
-const options = { useNewUrlParser: true, useUnifiedTopology: true };
+const options = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+};
 
 mongoose
   .connect(uri, options)
@@ -54,3 +57,9 @@ mongoose
   .catch((error) => {
     throw error;
   });
+
+const database = mongoose.connection;
+
+database.on("connected", () => {
+  console.log(`connected to Atlas @${database.host}`);
+});
