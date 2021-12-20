@@ -1,0 +1,21 @@
+.signin {
+  box-sizing: border-box;
+  border: #ee7752 1px solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  color: white;
+
+
+  &_container {
+    box-sizing: border-box;
+    border: #23d5ab 1px solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90%;
+    width: 90%;
+  }
+}

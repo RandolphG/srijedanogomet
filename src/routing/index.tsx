@@ -8,6 +8,8 @@ import {
 } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import { Registration } from "../pages";
+import { LineUp } from "../pages/lineUp";
+import SignIn from "../pages/signin/signin";
 
 /**
  * application router
@@ -21,6 +23,8 @@ const AppRouter: FC = () => {
         <AnimatePresence exitBeforeEnter initial={false}>
           <Routes>
             <Route path="/" element={<Registration />} />
+            <Route path="/signin" element={<SignIn />} />
+            <Route path="/lineUp" element={<LineUp />} />
           </Routes>
         </AnimatePresence>
       </Suspense>

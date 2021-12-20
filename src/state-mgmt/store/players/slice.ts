@@ -3,7 +3,7 @@ import { v4 as uuid } from "uuid";
 import { reducers } from "./reducers";
 import { IPlayers } from "./types";
 
-const initState: IPlayers = {
+const initialState: IPlayers = {
   players: {
     "player-1": {
       display: false,
@@ -27,14 +27,17 @@ const initState: IPlayers = {
     },
   },
   tempInfo: {},
+  isLoggedIn: { userId: undefined, status: false, token: undefined },
 };
 
 export const playersSlice = createSlice({
   name: "players",
-  initialState: initState,
+  initialState, // @ts-ignore
+
   reducers,
 });
 
-export const {} = playersSlice.actions;
+export const { requestLogout, requestLogin, requestPlayerUserName } =
+  playersSlice.actions;
 
 export default playersSlice.reducer;

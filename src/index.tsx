@@ -1,5 +1,7 @@
+import { ApolloProvider } from "@apollo/client";
 import React from "react";
 import ReactDOM from "react-dom";
+import { client } from "./client";
 import { store, history } from "./state-mgmt/store";
 import { Provider } from "react-redux";
 import { I18nextProvider } from "react-i18next";
@@ -9,12 +11,14 @@ import i18next from "i18next";
 import "./theme/_style.scss";
 
 ReactDOM.render(
-  <Provider store={store}>
-    {/*<ConnectedRouter history={history}>*/}
-    <I18nextProvider i18n={i18next}>
-      <Routes />
-    </I18nextProvider>
-    {/*</ConnectedRouter>*/}
-  </Provider>,
+  <ApolloProvider client={client}>
+    <Provider store={store}>
+      {/*<ConnectedRouter history={history}>*/}
+      <I18nextProvider i18n={i18next}>
+        <Routes />
+      </I18nextProvider>
+      {/*</ConnectedRouter>*/}
+    </Provider>
+  </ApolloProvider>,
   document.getElementById("root")
 );

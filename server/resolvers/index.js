@@ -30,6 +30,7 @@ module.exports = {
 
       const createdUser = await new User({
         userName: user.userInput.userName,
+        height: user.userInput.height,
         email: user.userInput.email,
         password: hashPassword,
       });
@@ -40,6 +41,18 @@ module.exports = {
     } catch (error) {
       throw error;
     }
+  },
+  users: async () => {
+    return User.find()
+      .then((users) => {
+        return users.map((user) => {
+          return { ...user._doc };
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        throw err;
+      });
   },
   articles: async () => {
     try {
