@@ -10,14 +10,16 @@
 
   &_container {
     box-sizing: border-box;
-    border: #23d5ab 1px solid;
+    border: #0086e4 3px solid;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 90%;
     width: 90%;
 
     &_max {
+      position: relative;
       overflow: hidden;
       border: #ee7752 1px solid;
       height: 60%;
@@ -25,9 +27,12 @@
       padding: 0 1rem;
       display: flex;
       flex-direction: column;
-
+      justify-content: center;
+      //align-items: center;
 
       &_title {
+        position: absolute;
+        top: 1rem;
         text-align: center;
         font-weight: bold;
         margin-bottom: 1rem;

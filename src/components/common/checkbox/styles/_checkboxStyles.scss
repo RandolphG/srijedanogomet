@@ -1,0 +1,44 @@
+.wrapper {
+  box-sizing: border-box;
+  position: relative;
+  border: #ee7752 4px solid;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+
+  &_checkbox{
+    border: #0086e4 4px solid;
+    width: fit-content;
+    height: fit-content;
+    &_box {
+      border: 3px solid white;
+      width: 100%;
+      height: 100%;
+      @media only screen and (min-width: 1200px) {
+        font-size: 5rem;
+        height: 5rem;
+        width: 5rem;
+      }
+      &_check{
+
+      }
+    }
+  }
+
+  &_label {
+    font-size: 20px;
+    transition: color 0.2s;
+
+    @media only screen and (min-width: 1200px) {
+      font-size: 5rem;
+      //height: 5rem;
+      //width: 5rem;
+    }
+  }
+}
+

@@ -22,3 +22,10 @@ ReactDOM.render(
   </ApolloProvider>,
   document.getElementById("root")
 );
+
+/*TODO
+   push notifications : https://itnext.io/react-push-notifications-with-hooks-d293d36f4836
+   player profile page
+   team lineup page
+   team stats page
+ *  */

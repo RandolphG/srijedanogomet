@@ -144,7 +144,7 @@ module.exports = {
         "secretKey",
         { expiresIn: "1h" }
       );
-      return { userId: user.id, token: token, tokenExpiration: 1 };
+      return { userId: user.id, token, tokenExpiration: 1 };
     } catch (error) {
       throw error;
     }

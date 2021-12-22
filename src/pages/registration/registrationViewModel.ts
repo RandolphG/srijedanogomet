@@ -87,10 +87,10 @@ export const RegistrationViewModel = () => {
 
   return {
     playerInfo,
+    navigate,
     onChange,
     onClick,
     showPassword,
     handleSubmit,
-    navigate,
   };
 };
