@@ -1,7 +1,7 @@
 import { createSelector } from "reselect";
 import { IState } from "../../../types";
 
-const selectSystemState = (state: IState) => {
+export const selectSystemState = (state: IState) => {
   console.log(`selector state`, state);
   return state;
 };

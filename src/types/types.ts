@@ -4,16 +4,17 @@ import { Reducer } from "redux";
 import { ActionType } from "typesafe-actions";
 import { History } from "history";
 import {
+  IPlayers,
+  ISystemState,
+  ILeagues,
+  Dashboard,
+  ITeams,
   requestCurrentUserActionSuccess,
   requestLoginAction,
   requestLoginActionFailure,
   requestLoginSuccessAction,
   rootReducer,
 } from "../state-mgmt/store";
-import { Dashboard } from "../state-mgmt/store/dashboard/types";
-import { ILeagues } from "../state-mgmt/store/leagues/types";
-import { IPlayers } from "../state-mgmt/store/players/types";
-import { ITeams } from "../state-mgmt/store/teams/types";
 
 export interface IState {
   system: ISystemState;
@@ -24,32 +25,6 @@ export interface IState {
   router: (
     history: History<RouterState<ISystemState>>
   ) => Reducer<RouterState<RouterState<ISystemState>>>;
-}
-
-export interface ISystemState {
-  admin: Boolean;
-  status: string;
-  token: string;
-  name: string;
-  userName: string;
-  isLoggedIn: boolean;
-  loggedInStatus: ILoggedInStatus;
-  teams: string[];
-}
-
-export interface ILoggedInStatus {
-  userId: string | null;
-  status: boolean;
-  token: string | null;
-}
-
-export interface IUserInput {
-  readonly username: string;
-  readonly password: string;
-}
-
-export interface ICurrentUser {
-  name: string;
 }
 
 export interface IInputField {

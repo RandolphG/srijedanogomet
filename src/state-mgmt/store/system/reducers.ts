@@ -1,21 +1,21 @@
 import { PayloadAction } from "@reduxjs/toolkit";
+import { IModalState, ISignInModalState } from "../../../types/";
+import { IPlayerCredentials } from "../players";
 import {
-  ICredentialsState,
   ICurrentUser,
   ILoggedInStatus,
-  IModalState,
-  ISignInModalState,
   ISystemState,
-  ITeamId,
-  ITeamState,
   IUserInput,
-} from "../../../types/";
+} from "./types";
 
 export const reducers = {
   requestLoginAction: (
     state: ISystemState,
     action: PayloadAction<IUserInput>
-  ) => {},
+  ) => {
+    const isLoggedIn = action.payload;
+    return { ...state, isLoggedIn };
+  },
   requestLoginSuccessAction: (
     state: ISystemState,
     action: PayloadAction<ISystemState>
@@ -29,16 +29,22 @@ export const reducers = {
       token,
     };
   },
+  requestLoginActionFailure: (
+    state: ISystemState,
+    action: PayloadAction<Error>
+  ) => {},
+  requestLogoutAction: (state: ISystemState) => {
+    return {
+      ...state,
+      loggedInStatus: { userId: null, status: false, token: null },
+    };
+  },
   requestCurrentUserActionSuccess: (
     state: ISystemState,
     action: PayloadAction<ICurrentUser>
   ) => {
     return { ...state, name: action.payload.name };
   },
-  requestLoginActionFailure: (
-    state: ISystemState,
-    action: PayloadAction<Error>
-  ) => {},
   requestShowModalSuccess: (state: any, action: PayloadAction<IModalState>) => {
     return { ...state, showModal: action.payload.show };
   },
@@ -54,27 +60,11 @@ export const reducers = {
   ) => {
     return { ...state, loggedInStatus: action.payload };
   },
-  requestSetLogout: (state: ISystemState) => {
-    return {
-      ...state,
-      loggedInStatus: { userId: null, status: false, token: null },
-    };
-  },
-  requestSetName: (
+  requestSetUserNameAction: (
     state: ISystemState,
-    action: PayloadAction<ICredentialsState>
+    action: PayloadAction<IPlayerCredentials>
   ) => {
-    return { ...state, userName: action.payload.credentials.userName };
-  },
-  requestAddTeam: (state: ISystemState, action: PayloadAction<ITeamState>) => {
-    const { payload } = action;
-    const teams = `board-${payload}`;
-
-    return { ...state, teams };
-  },
-  requestRemoveTeam: (state: ISystemState, action: PayloadAction<ITeamId>) => {
-    const { teamId } = action.payload;
-    const newState = state;
-    return newState.teams.filter((val) => val !== teamId);
+    const playerInfo = action.payload;
+    return { ...state, userName: playerInfo.userName };
   },
 };

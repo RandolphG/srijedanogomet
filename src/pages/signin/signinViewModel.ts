@@ -1,7 +1,10 @@
 import React, { ChangeEvent, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { requestLogin, requestPlayerUserName } from "../../state-mgmt/store";
+import {
+  requestLoginAction,
+  requestSetUserNameAction,
+} from "../../state-mgmt/store";
 
 export const SigninViewModel = () => {
   let navigate = useNavigate();
@@ -32,9 +35,9 @@ export const SigninViewModel = () => {
     `,
   };
 
-  const handleSubmit = (
+  function handleSubmit(
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
+  ) {
     event.preventDefault();
     console.log(`\nplayerInfo`, playerInfo);
     fetch("http://localhost:8000/graphql", {
@@ -57,9 +60,9 @@ export const SigninViewModel = () => {
         console.log(`\nlogin`, login);
 
         if (login.token) {
-          dispatch(requestPlayerUserName({ playerInfo }));
+          dispatch(requestSetUserNameAction(playerInfo));
           dispatch(
-            requestLogin({
+            requestLoginAction({
               isLoggedIn: {
                 userId: login.userId,
                 status: true,
@@ -71,17 +74,17 @@ export const SigninViewModel = () => {
         }
       })
       .catch((err) => {
-        console.log(`\nError Signing In: -->`, err);
+        console.log(`\nError Signing In: `, err);
       });
-  };
+  }
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+  function handleChange(event: ChangeEvent<HTMLInputElement>) {
     event.preventDefault();
     setCredentials({
       ...playerInfo,
       [event.target.name]: event.target.value,
     });
-  };
+  }
 
   function showPassword() {
     setInputType(inputType === "text" ? "password" : "text");

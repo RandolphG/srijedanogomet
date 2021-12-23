@@ -4,24 +4,25 @@ import { ITeams } from "./types";
 
 const initialState: ITeams = {
   "team-1": {
-    id: "list-0",
-    title: "planning",
-    players: ["player-1", "player-2"],
+    id: "Team-1",
+    title: "Team-1",
+    players: ["william", "andrea"],
     group: "srijeda-nogomet",
   },
   "team-2": {
-    id: "list-1",
-    title: "in progress",
-    players: ["player-1", "player-2"],
+    id: "Team-2",
+    title: "Team-2",
+    players: ["randi", "maria"],
     group: "srijeda-nogomet",
   },
 };
 export const teamsSlice = createSlice({
   name: "teams",
   initialState,
+  //@ts-ignore
   reducers,
 });
 
-export const {} = teamsSlice.actions;
+export const { requestRemoveTeam, requestAddTeam } = teamsSlice.actions;
 
 export default teamsSlice.reducer;

@@ -1,4 +1,4 @@
-import { finalActions, ISystemState, RootState } from "../../types";
+import { finalActions, RootState } from "../../types";
 import systemReducer from "./system/slice";
 import playersReducer from "./players/slice";
 import teamsReducer from "./teams/slice";
@@ -8,7 +8,7 @@ import dashboardReducer from "./dashboard/slice";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { createBrowserHistory } from "history";
 import { combineEpics, createEpicMiddleware } from "redux-observable";
-import { doLoginEpic } from "./system";
+import { doLoginEpic, ISystemState } from "./system";
 import {
   connectRouter,
   routerMiddleware,

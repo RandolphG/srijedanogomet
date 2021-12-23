@@ -1,58 +1,24 @@
-import React, { FC, Fragment, memo, useState } from "react";
-import { gql, useQuery } from "@apollo/client";
-import { useNavigate } from "react-router-dom";
+import React, { FC, Fragment, memo } from "react";
 import { Checkbox } from "../../components/";
+import { LineUpViewModel } from "./lineUpViewModel";
 import "./styles/_lineUpStyles.scss";
-
-const USERS = gql`
-  query users {
-    users {
-      userName
-      password
-      email
-      createdAt
-    }
-  }
-`;
-
-type lineUp = {
-  type: string;
-  selection: any[];
-};
 
 /**
  * LineUp
  */
 const LineUp: FC = memo(() => {
-  const { loading, error, data } = useQuery(USERS);
+  const {
+    lineUpState,
+    loading,
+    error,
+    data,
+    toggleSelection,
+    navigateToProfile,
+    navigate,
+    system,
+  } = LineUpViewModel();
 
-  let navigate = useNavigate();
-
-  const [lineUpState, setLineUpState] = useState<lineUp>({
-    type: "checkbox",
-    selection: [],
-  });
-
-  function toggleSelection(id: string) {
-    const { type, selection } = lineUpState;
-
-    if (type === "checkbox") {
-      if (selection.includes(id)) {
-        setLineUpState({
-          type,
-          selection: selection.filter((sel) => sel !== id),
-        });
-      } else {
-        setLineUpState({
-          type,
-          selection: [...selection, id],
-        });
-      }
-    } else {
-      setLineUpState({ type, selection: [id] });
-    }
-  }
-
+  /* loading default*/
   const Loading = () => (
     <Fragment>
       {loading && (
@@ -63,18 +29,53 @@ const LineUp: FC = memo(() => {
     </Fragment>
   );
 
+  /* error default*/
   const Error = () => (
     <Fragment>
       {error && (
         <div className="lineUp_container">
-          <div>... LineUp</div>
+          <div>... Error</div>
         </div>
       )}
     </Fragment>
   );
 
+  /* profile navigation button */
+  const ProfileButton = ({ user }: { user: { userName: string } }) => (
+    <div
+      className="lineUp_container_max_players_player_profileBtn"
+      onClick={() => navigateToProfile(user.userName)}
+    >
+      Profile
+    </div>
+  );
+
+  /* logout button */
+  const LogOutButton = () => (
+    <div
+      className="lineUp_container_max_logoutButton"
+      onClick={() => navigate("/")}
+    >
+      Log Out
+    </div>
+  );
+
+  /* component container */
+  const Container = ({ children }: any) => (
+    <div className="lineUp">{children}</div>
+  );
+
+  /* container for list of containers */
+  const LineUpContainer = ({ children }: any) => (
+    <div className="lineUp_container">{children}</div>
+  );
+
+  /* list of players */
   const Players = () => (
     <div className="lineUp_container_max">
+      <div style={{ color: "white" }}>
+        Signed in as : {system.system.userName}
+      </div>
       <div className="lineUp_container_max_title">
         players : {data && data.users.length}
       </div>
@@ -93,6 +94,7 @@ const LineUp: FC = memo(() => {
                 onClick={() => toggleSelection(user.userName)}
                 label={user.userName}
               />
+              <ProfileButton user={user} />
             </span>
           ))}
       </div>
@@ -100,21 +102,14 @@ const LineUp: FC = memo(() => {
   );
 
   return (
-    <div className="lineUp">
-      <div className="lineUp_container">
+    <Container>
+      <LineUpContainer>
         <Loading />
-        <div className="lineUp_container">
-          <Players />
-          <button
-            className="lineUp_container_max_button"
-            onClick={() => navigate("/")}
-          >
-            Logout
-          </button>
-        </div>
-      </div>
+        <Players />
+        <LogOutButton />
+      </LineUpContainer>
       <Error />
-    </div>
+    </Container>
   );
 });
 

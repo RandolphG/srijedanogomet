@@ -15,9 +15,9 @@ export const RegistrationViewModel = () => {
 
   const [inputType, setInputType] = useState<string>("password");
   const [playerInfo, setPlayerInfo] = useState<playerInfo>({
-    userName: "marija",
-    height: "173cm",
-    email: "marija.biscan@poplogics.com",
+    userName: "",
+    height: "cm",
+    email: "@poplogics.com",
     password: "password",
     tags: ["attacker", "defense", "midfielder"],
     isInEditMode: false,

@@ -1,0 +1,74 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type Article {
+    _id: ID!
+    body: String!
+    createdAt: String!
+    title: String!
+}
+
+type AuthData {
+    token: String!
+    tokenExpiration: Int!
+    userId: ID!
+}
+
+type Event {
+    _id: ID!
+    creator: User!
+    userName: String!
+}
+
+type Login {
+    email: String!
+    password: String!
+    userName: String!
+}
+
+type Mutation {
+    createArticle(article: ArticleInput): Article
+    createUser(userInput: UserInput): User
+}
+
+type Query {
+    articles: [Article!]
+    event: [Event!]
+    login(email: String!, password: String!, userName: String!): AuthData!
+    users: [User!]!
+}
+
+type User {
+    _id: ID!
+    createdAt: String!
+    email: String!
+    password: String
+    userName: String!
+}
+
+input ArticleInput {
+    body: String!
+    title: String!
+}
+
+input EventInput {
+    email: String!
+    homeTown: String!
+    userName: String!
+}
+
+input LoginInput {
+    email: String!
+    password: String!
+    userName: String!
+}
+
+input UserInput {
+    email: String!
+    password: String!
+    userName: String!
+}

@@ -7,9 +7,14 @@ import {
   Routes,
 } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
-import { Registration } from "../pages";
-import { LineUp } from "../pages/lineUp";
-import SignIn from "../pages/signin/signin";
+import {
+  SignIn,
+  Registration,
+  LineUp,
+  Profile,
+  Home,
+  Dashboard,
+} from "../pages";
 
 /**
  * application router
@@ -24,7 +29,10 @@ const AppRouter: FC = () => {
           <Routes>
             <Route path="/" element={<Registration />} />
             <Route path="/signin" element={<SignIn />} />
-            <Route path="/lineUp" element={<LineUp />} />
+            <Route path="/profile" element={<Profile />} />{" "}
+            <Route path="/srijeda-nogomet" element={<LineUp />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/home" element={<Home />} />
           </Routes>
         </AnimatePresence>
       </Suspense>

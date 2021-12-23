@@ -1,10 +1,14 @@
 export interface ILeagues {
   activeLeague: string | undefined;
-  "srijeda-nogomet": Srijeda;
+  leagues: Leagues;
 }
 
-export interface Srijeda {
-  id: string;
-  teams: string[];
-  name: string;
+export interface Leagues {
+  [key: string]: League;
 }
+
+export type League = {
+  id: string;
+  name: string;
+  teams: string[];
+};

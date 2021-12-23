@@ -5,21 +5,21 @@ import { IPlayers } from "./types";
 
 const initialState: IPlayers = {
   players: {
-    "player-1": {
+    randi: {
       display: false,
-      id: `player-1`,
+      id: `randi`,
       key: uuid(),
-      team: "team-0",
+      team: "team-2",
       name: "Randolph Gordon",
       height: "183cm",
       tags: ["attacker", "defense", "power", "speed", "technique"],
       isInEditMode: false,
     },
-    "player-2": {
+    vedran: {
       display: false,
-      id: `player-2`,
+      id: `vedran`,
       key: uuid(),
-      team: "team-0",
+      team: "team-2",
       name: "Vedran",
       height: "173cm",
       tags: ["attacker", "defense", "power", "speed", "technique"],
@@ -37,7 +37,6 @@ export const playersSlice = createSlice({
   reducers,
 });
 
-export const { requestLogout, requestLogin, requestPlayerUserName } =
-  playersSlice.actions;
+export const {} = playersSlice.actions;
 
 export default playersSlice.reducer;

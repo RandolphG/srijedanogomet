@@ -7,6 +7,7 @@ const mapStateToProps = (state: RootState) => ({
   login: state.system,
 });
 
+/*
 const mapDispatchToProps = (dispatch: Dispatch) =>
   bindActionCreators(
     {
@@ -15,6 +16,7 @@ const mapDispatchToProps = (dispatch: Dispatch) =>
     },
     dispatch
   );
+*/
 
 /* Connector encasing for App component to redux state
 This principal should be followed for all components needing to be attached to redux state */

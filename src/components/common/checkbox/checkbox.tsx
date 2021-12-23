@@ -20,7 +20,6 @@ const Checkbox = ({ selected, label, onClick }: CheckboxProps) => {
   return (
     <div className="wrapper" onClick={onClick}>
       <div className="wrapper_checkbox">
-        {/*<span className="wrapper_checkbox_box" />*/}
         <svg
           className="wrapper_checkbox_check"
           viewBox="0 0 100 100"
