@@ -10,9 +10,9 @@ import {
 
 export const LeaguesViewModel = () => {
   let navigate = useNavigate();
+  const dispatch = useDispatch();
   const dashboard = useSelector(getDashboard);
   const [league, setLeagueName] = useState({ leagueId: "" });
-  const dispatch = useDispatch();
 
   /* add league */
   function handleAddLeague(
@@ -31,6 +31,7 @@ export const LeaguesViewModel = () => {
 
   function handleSetLeagueId(id: string) {
     dispatch(requestSetActiveLeague({ leagueId: id }));
+    navigate(`${id}`);
   }
 
   /* handle input of league name */

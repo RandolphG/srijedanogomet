@@ -1,26 +1,19 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, SelectHTMLAttributes, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
-type playerInfo = {
-  userName: string;
-  email: string;
-  password: string;
-  height: string;
-  tags: string[];
-  isInEditMode: boolean;
-};
+import { getDashboard, Player, requestAddPlayer } from "../../state-mgmt/store";
 
 export const RegistrationViewModel = () => {
   let navigate = useNavigate();
-
+  const dashboard = useSelector(getDashboard);
+  const dispatch = useDispatch();
   const [inputType, setInputType] = useState<string>("password");
-  const [playerInfo, setPlayerInfo] = useState<playerInfo>({
+  const [playerInfo, setPlayerInfo] = useState<Player>({
+    league: "srijeda-nogomet",
     userName: "",
     height: "cm",
     email: "@poplogics.com",
     password: "password",
-    tags: ["attacker", "defense", "midfielder"],
-    isInEditMode: false,
   });
 
   function handleSubmit(
@@ -28,7 +21,9 @@ export const RegistrationViewModel = () => {
   ) {
     event.preventDefault();
     console.log("submit");
-    fetch("http://localhost:8000/graphql", {
+    dispatch(requestAddPlayer(playerInfo));
+
+    /*fetch("http://localhost:8000/graphql", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -45,7 +40,15 @@ export const RegistrationViewModel = () => {
       .then((response) => {
         console.log(response);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err));*/
+  }
+
+  function handleSelectOnChange(event: ChangeEvent<HTMLSelectElement>) {
+    console.log(event.target.value);
+    setPlayerInfo({
+      ...playerInfo,
+      [event.target.name]: event.target.value,
+    });
   }
 
   function onChange(event: ChangeEvent<HTMLInputElement>) {
@@ -86,8 +89,10 @@ export const RegistrationViewModel = () => {
   };
 
   return {
+    dashboard,
     playerInfo,
     navigate,
+    handleSelectOnChange,
     onChange,
     onClick,
     showPassword,

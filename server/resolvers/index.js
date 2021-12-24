@@ -94,8 +94,6 @@ module.exports = {
       });
   },
   createEvent: async (args, request) => {
-    console.log(`\ncreateEvent:`);
-
     if (!request.isAuth) {
       throw new Error("Unauthorized");
     }

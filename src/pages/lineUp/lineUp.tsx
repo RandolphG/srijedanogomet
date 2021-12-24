@@ -12,6 +12,7 @@ const LineUp: FC = memo(() => {
     lineUpState,
     loading,
     data,
+    players,
     toggleSelection,
     navigateToProfile,
     navigate,
@@ -32,7 +33,7 @@ const LineUp: FC = memo(() => {
   const ProfileButton = ({ user }: { user: { userName: string } }) => (
     <div
       className="lineUp_container_max_players_player_profileBtn"
-      onClick={() => navigateToProfile(`${user.userName}`)}
+      onClick={() => navigateToProfile(`${user}`)}
     >
       Profile
     </div>
@@ -68,12 +69,12 @@ const LineUp: FC = memo(() => {
           marginBottom: "1rem",
         }}
       >
-        <div>players : {data && data.users.length}</div>
+        <div>players : {players && players.length}</div>
         <div>active : {lineUpState.selection.length}</div>
       </div>
       <div className="lineUp_container_max_players">
-        {data &&
-          data.users.map((user: any, idx: number) => (
+        {players &&
+          players.map((user: any, idx: number) => (
             <span
               key={`player-${idx}`}
               className="lineUp_container_max_players_player"
@@ -81,7 +82,7 @@ const LineUp: FC = memo(() => {
               <Checkbox
                 selected={lineUpState.selection.includes(user.userName)}
                 onClick={() => toggleSelection(user.userName)}
-                label={user.userName}
+                label={user}
               />
               <ProfileButton user={user} />
             </span>

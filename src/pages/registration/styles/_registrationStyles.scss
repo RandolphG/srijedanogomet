@@ -59,6 +59,30 @@
         }
       }
 
+      &_labelSelect {
+        overflow: hidden;
+        font-size: 1.5rem;
+        border-radius: .25rem;
+        padding: 0 .5rem;
+        color: grey;
+        width: 300px;
+        @media only screen and (min-width: 1200px) {
+          font-size: 1rem;
+        }
+      }
+
+      &_labelTeam {
+        font-size: 1.5rem;
+        font-family: "exoMediumItalic", sans-serif;
+        border-radius: .25rem;
+        padding: 0 .5rem;
+        background: white;
+        color: grey;
+        @media only screen and (min-width: 1200px) {
+          font-size: 5rem;
+        }
+      }
+
       &_labelEmail {
         font-size: 1.5rem;
         font-family: "exoMediumItalic", sans-serif;

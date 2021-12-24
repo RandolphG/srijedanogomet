@@ -24,7 +24,6 @@ const Leagues: FC = () => {
             className="dashboard_container_max_league_name"
             onClick={() => {
               handleSetLeagueId(item);
-              navigate(`${item}`);
             }}
           >
             {item}

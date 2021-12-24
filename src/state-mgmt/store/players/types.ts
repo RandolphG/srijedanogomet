@@ -1,7 +1,6 @@
 export interface IPlayers {
   players: Players;
   tempInfo: TempInfo;
-  isLoggedIn: IPlayerIsLoggedIn;
 }
 
 export interface Players {
@@ -9,24 +8,19 @@ export interface Players {
 }
 
 export interface Player {
-  display: boolean;
-  id: string;
-  key: string;
-  team: string;
-  name: string;
+  id?: string;
+  key?: string;
+  userName: string;
+  password?: string;
+  email: string;
   height: string;
-  tags: string[];
-  isInEditMode: boolean;
+  team?: string;
+  league: string;
+  isInEditMode?: boolean;
 }
 
 export interface Types {
   [key: string]: string;
-}
-
-export interface IPlayerIsLoggedIn {
-  userId: string | undefined;
-  status: boolean;
-  token: string | undefined;
 }
 
 export interface IPlayerCredentials {

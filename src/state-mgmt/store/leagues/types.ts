@@ -1,5 +1,7 @@
+import { DashboardLeagueID } from "../dashboard";
+
 export interface ILeagues {
-  activeLeague: string | undefined;
+  activeLeague: DashboardLeagueID;
   leagues: Leagues;
 }
 

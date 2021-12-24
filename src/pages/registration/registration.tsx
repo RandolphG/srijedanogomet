@@ -6,8 +6,15 @@ import { RegistrationViewModel } from "./registrationViewModel";
  * Registration
  **/
 const Registration: FC = memo(() => {
-  const { playerInfo, onChange, onClick, handleSubmit, navigate } =
-    RegistrationViewModel();
+  const {
+    playerInfo,
+    onChange,
+    onClick,
+    handleSubmit,
+    navigate,
+    handleSelectOnChange,
+    dashboard,
+  } = RegistrationViewModel();
 
   return (
     <div className="registration">
@@ -17,6 +24,30 @@ const Registration: FC = memo(() => {
             Signup / Registration
           </div>
           {playerInfo.isInEditMode ? (
+            <select
+              className="registration_container_max_labelTeam"
+              name="league"
+              id="league"
+              value={playerInfo.league}
+              onChange={handleSelectOnChange}
+            >
+              {dashboard &&
+                dashboard.map((value, idx) => (
+                  <option
+                    className="registration_container_max_labelSelect"
+                    key={`selection-${idx}`}
+                    value={value}
+                  >
+                    {value}
+                  </option>
+                ))}
+            </select>
+          ) : (
+            <div className="registration_container_max_label">
+              {playerInfo.league}
+            </div>
+          )}
+          {playerInfo.isInEditMode ? (
             <input
               className="registration_container_max_labelName"
               type="text"
@@ -24,6 +55,7 @@ const Registration: FC = memo(() => {
               id="userName"
               value={playerInfo.userName}
               onChange={onChange}
+              placeholder="Enter your name"
               required
             />
           ) : (

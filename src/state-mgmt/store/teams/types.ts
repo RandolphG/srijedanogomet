@@ -1,6 +1,5 @@
 export interface ITeams {
-  "team-1": Team;
-  "team-2": Team;
+  [key: string]: Team;
 }
 
 export interface Team {

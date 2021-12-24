@@ -23,7 +23,7 @@ export const history = createBrowserHistory<RouterState<ISystemState>>();
 export const rootReducer = combineReducers({
   router: connectRouter<RouterState<ISystemState>>(history),
   system: systemReducer,
-  player: playersReducer,
+  players: playersReducer,
   teams: teamsReducer,
   leagues: leaguesReducer,
   dashboard: dashboardReducer,
