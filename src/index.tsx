@@ -1,6 +1,7 @@
 import { ApolloProvider } from "@apollo/client";
 import React from "react";
 import ReactDOM from "react-dom";
+import { HashRouter as Router } from "react-router-dom";
 import { client } from "./client";
 import { store, history } from "./state-mgmt/store";
 import { Provider } from "react-redux";
@@ -15,7 +16,9 @@ ReactDOM.render(
     <Provider store={store}>
       {/*<ConnectedRouter history={history}>*/}
       <I18nextProvider i18n={i18next}>
-        <Routes />
+        <Router>
+          <Routes />
+        </Router>
       </I18nextProvider>
       {/*</ConnectedRouter>*/}
     </Provider>

@@ -1,20 +1,74 @@
-import React, { FC, Suspense } from "react";
-import {
-  HashRouter as Router,
-  Navigate,
-  Outlet,
-  Route,
-  Routes,
-} from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
+import React, { FC, Suspense } from "react";
+import { RouteObject, useRoutes } from "react-router-dom";
 import {
-  SignIn,
+  Dashboard,
+  Home,
+  NotFound,
+  Profile,
+  Leagues,
   Registration,
   LineUp,
-  Profile,
-  Home,
-  Dashboard,
+  SignIn,
 } from "../pages";
+import { PrivateRoute, PublicRoute } from "./helper";
+
+/*A route object has the same properties as a <Route>
+element. The `children` is just an array of child routes.*/
+let index: RouteObject[] = [
+  {
+    path: "/",
+    element: (
+      <PublicRoute>
+        <Home />
+      </PublicRoute>
+    ),
+  },
+  {
+    path: "home",
+    element: (
+      <PublicRoute>
+        <Home />
+      </PublicRoute>
+    ),
+  },
+  {
+    path: "registration",
+    element: (
+      <PublicRoute>
+        <Registration />
+      </PublicRoute>
+    ),
+  },
+  {
+    path: "signIn",
+    element: (
+      <PublicRoute>
+        <SignIn />
+      </PublicRoute>
+    ),
+  },
+  {
+    path: "dashboard",
+    element: (
+      <PrivateRoute>
+        <Dashboard />
+      </PrivateRoute>
+    ),
+    children: [
+      { index: true, element: <Leagues /> },
+      {
+        path: "/dashboard:id",
+        element: <LineUp />,
+      },
+      {
+        path: "/dashboard/:id/profile/:id",
+        element: <Profile />,
+      },
+    ],
+  },
+  { path: "*", element: <NotFound /> },
+];
 
 /**
  * application router
@@ -22,38 +76,15 @@ import {
  * @constructor
  */
 const AppRouter: FC = () => {
+  let element = useRoutes(index);
+
   return (
-    <Router>
-      <Suspense fallback={<></>}>
-        <AnimatePresence exitBeforeEnter initial={false}>
-          <Routes>
-            <Route path="/" element={<Registration />} />
-            <Route path="/signin" element={<SignIn />} />
-            <Route path="/profile" element={<Profile />} />{" "}
-            <Route path="/srijeda-nogomet" element={<LineUp />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/home" element={<Home />} />
-          </Routes>
-        </AnimatePresence>
-      </Suspense>
-    </Router>
+    <Suspense fallback={<></>}>
+      <AnimatePresence exitBeforeEnter initial={false}>
+        {element}
+      </AnimatePresence>
+    </Suspense>
   );
 };
-
-const Private = () => <div>private</div>;
-
-function PrivateOutlet() {
-  const auth = useAuth();
-  return auth ? <Outlet /> : <Navigate to="/registration" />;
-}
-
-function PrivateRoute({ children }: any) {
-  const auth = useAuth();
-  return auth ? children : <Navigate to="/registration" />;
-}
-
-function useAuth() {
-  return true;
-}
 
 export default AppRouter;

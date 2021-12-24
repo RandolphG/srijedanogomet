@@ -1,6 +1,8 @@
 export { Registration } from "./registration";
 export { SignIn } from "./signin";
 export { LineUp } from "./lineUp";
-export { Profile } from "./profile";
+export * from "./profile";
 export { Home } from "./home";
 export { Dashboard } from "./dashboard";
+export { NotFound } from "./notFound";
+export { Leagues } from "./leagues";

@@ -24,7 +24,7 @@
       overflow: hidden;
       border: #ee7752 7px solid;
       height: 60%;
-      width: 80%;
+      width: 90%;
       padding: 1rem;
       display: flex;
       flex-direction: column;
@@ -51,6 +51,7 @@
       }
 
       &_players {
+        overflow-y: scroll;
         width: 100%;
         height: 70%;
         display: flex;
@@ -58,6 +59,8 @@
         justify-content: space-between;
         border: #ff00ff 6px solid;
         padding: 2rem;
+        margin-bottom: auto;
+        cursor: pointer;
 
         &_player {
           box-sizing: border-box;
@@ -84,12 +87,12 @@
         }
       }
 
-      &_LogoutButton {
+      &_logoutButton {
         border: lightgreen 5px solid;
         color: grey;
         font-size: 1.5rem;
         font-family: "exoMediumItalic", sans-serif;
-        margin-top: 1rem;
+        margin-top: 2rem;
 
         @media only screen and (min-width: 1200px) {
           font-size: 5rem;

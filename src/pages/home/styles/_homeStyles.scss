@@ -1,0 +1,90 @@
+.home {
+  box-sizing: border-box;
+  border: #ee7752 1px solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  color: white;
+
+
+  &_container {
+    box-sizing: border-box;
+    border: #23d5ab 1px solid;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90%;
+    width: 90%;
+
+    &_max {
+      position: relative;
+      overflow: hidden;
+      border: #ee7752 7px solid;
+      height: 60%;
+      width: 80%;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      &_title {
+        position: absolute;
+        top: 1rem;
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 1rem;
+      }
+
+      &_active {
+        position: absolute;
+        top: 2rem;
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 1rem;
+        @media only screen and (min-width: 1200px) {
+          top: 7rem;
+        }
+      }
+
+
+      &_button {
+        width: 100%;
+        font-size: 1.5rem;
+        font-family: "exoMediumItalic", sans-serif;
+        border-radius: .25rem;
+        padding: 0 .5rem;
+        background: white;
+        color: grey;
+        margin-top: 1rem;
+        @media only screen and (min-width: 1200px) {
+          font-size: 5rem;
+        }
+      }
+    }
+  }
+
+  /* Extra small devices (phones, 600px and down) */
+  @media only screen and (max-width: 600px) {
+  }
+
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+  @media only screen and (min-width: 600px) {
+  }
+
+  /* Medium devices (landscape tablets, 768px and up) */
+  @media only screen and (min-width: 768px) {
+  }
+
+  /* Large devices (laptops/desktops, 992px and up) */
+  @media only screen and (min-width: 992px) {
+  }
+
+  /* Extra large devices (large laptops and desktops, 1200px and up) */
+  @media only screen and (min-width: 1200px) {
+    font-size: 5em;
+  }
+}

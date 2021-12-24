@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import "./styles/_checkboxStyles.scss";
 
 type CheckboxProps = {
@@ -14,7 +14,7 @@ type CheckboxProps = {
  * @param label
  * @param effect
  */
-const Checkbox = ({ selected, label, onClick }: CheckboxProps) => {
+const Checkbox = memo(({ selected, label, onClick }: CheckboxProps) => {
   const length = 126.36953735351562;
 
   return (
@@ -50,6 +50,6 @@ const Checkbox = ({ selected, label, onClick }: CheckboxProps) => {
       )}
     </div>
   );
-};
+});
 
 export default Checkbox;

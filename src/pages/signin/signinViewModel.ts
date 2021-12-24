@@ -6,6 +6,13 @@ import {
   requestSetUserNameAction,
 } from "../../state-mgmt/store";
 
+interface SignInViewModelProps {
+  handleSubmit: (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => void;
+  handleChange: (event: ChangeEvent<HTMLInputElement>) => void;
+}
+
 export const SigninViewModel = () => {
   let navigate = useNavigate();
   const dispatch = useDispatch();
@@ -70,7 +77,7 @@ export const SigninViewModel = () => {
               },
             })
           );
-          navigate("/lineUp");
+          navigate("/dashboard");
         }
       })
       .catch((err) => {

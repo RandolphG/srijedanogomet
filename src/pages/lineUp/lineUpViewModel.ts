@@ -2,7 +2,7 @@ import { gql, useQuery } from "@apollo/client";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { selectSystemState } from "../../state-mgmt/store";
+import { getLeagues, selectSystemState } from "../../state-mgmt/store";
 
 export const LineUpViewModel = () => {
   const USERS = gql`
@@ -21,8 +21,9 @@ export const LineUpViewModel = () => {
     selection: any[];
   };
 
-  const system = useSelector(selectSystemState);
+  const leagues = useSelector(getLeagues);
 
+  console.log(`LEAGUES -->`, leagues);
   const { loading, error, data } = useQuery(USERS);
 
   let navigate = useNavigate();
@@ -53,7 +54,7 @@ export const LineUpViewModel = () => {
   }
 
   function navigateToProfile(userName: string) {
-    console.log(`clicked ${userName}`);
+    navigate(`profile/${userName}`);
   }
 
   return {
@@ -64,6 +65,5 @@ export const LineUpViewModel = () => {
     toggleSelection,
     navigateToProfile,
     navigate,
-    system,
   };
 };

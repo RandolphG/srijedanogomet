@@ -55,7 +55,7 @@ const SignIn: FC = memo(() => {
           <button
             className="signin_container_max_button"
             type="submit"
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/registration")}
           >
             Registration
           </button>

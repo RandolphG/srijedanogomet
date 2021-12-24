@@ -9,6 +9,12 @@ export const leaguesSlice = createSlice({
   reducers,
 });
 
-export const {} = leaguesSlice.actions;
+export const {
+  requestAddLeagueDetails,
+  requestAddTeamToLeague,
+  requestDeleteTeamFromLeague,
+  requestRemoveLeague,
+  requestSetActiveLeague,
+} = leaguesSlice.actions;
 
 export default leaguesSlice.reducer;

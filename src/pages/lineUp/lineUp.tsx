@@ -1,4 +1,5 @@
 import React, { FC, Fragment, memo } from "react";
+import { useParams } from "react-router-dom";
 import { Checkbox } from "../../components/";
 import { LineUpViewModel } from "./lineUpViewModel";
 import "./styles/_lineUpStyles.scss";
@@ -10,12 +11,10 @@ const LineUp: FC = memo(() => {
   const {
     lineUpState,
     loading,
-    error,
     data,
     toggleSelection,
     navigateToProfile,
     navigate,
-    system,
   } = LineUpViewModel();
 
   /* loading default*/
@@ -29,22 +28,11 @@ const LineUp: FC = memo(() => {
     </Fragment>
   );
 
-  /* error default*/
-  const Error = () => (
-    <Fragment>
-      {error && (
-        <div className="lineUp_container">
-          <div>... Error</div>
-        </div>
-      )}
-    </Fragment>
-  );
-
   /* profile navigation button */
   const ProfileButton = ({ user }: { user: { userName: string } }) => (
     <div
       className="lineUp_container_max_players_player_profileBtn"
-      onClick={() => navigateToProfile(user.userName)}
+      onClick={() => navigateToProfile(`${user.userName}`)}
     >
       Profile
     </div>
@@ -60,27 +48,28 @@ const LineUp: FC = memo(() => {
     </div>
   );
 
-  /* component container */
-  const Container = ({ children }: any) => (
-    <div className="lineUp">{children}</div>
-  );
-
   /* container for list of containers */
   const LineUpContainer = ({ children }: any) => (
-    <div className="lineUp_container">{children}</div>
+    <div className="dashboard_container">{children}</div>
   );
+  let { id } = useParams<"id">();
 
   /* list of players */
   const Players = () => (
-    <div className="lineUp_container_max">
-      <div style={{ color: "white" }}>
-        Signed in as : {system.system.userName}
-      </div>
-      <div className="lineUp_container_max_title">
-        players : {data && data.users.length}
-      </div>
-      <div className="lineUp_container_max_active">
-        active : {lineUpState.selection.length}
+    <div style={{ border: "purple 5px solid", width: "100%", height: "100%" }}>
+      <div>league: {id}</div>
+
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+          padding: "0 2rem",
+          marginBottom: "1rem",
+        }}
+      >
+        <div>players : {data && data.users.length}</div>
+        <div>active : {lineUpState.selection.length}</div>
       </div>
       <div className="lineUp_container_max_players">
         {data &&
@@ -98,18 +87,15 @@ const LineUp: FC = memo(() => {
             </span>
           ))}
       </div>
+      <LogOutButton />
     </div>
   );
 
   return (
-    <Container>
-      <LineUpContainer>
-        <Loading />
-        <Players />
-        <LogOutButton />
-      </LineUpContainer>
-      <Error />
-    </Container>
+    <LineUpContainer>
+      <Loading />
+      <Players />
+    </LineUpContainer>
   );
 });
 
