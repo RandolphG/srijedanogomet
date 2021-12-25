@@ -17,7 +17,7 @@ const Home: FC = () => {
             className="home_container_max_button"
             onClick={() => navigate("/registration")}
           >
-            go to some place
+            ENTER
           </button>
         </div>
       </div>

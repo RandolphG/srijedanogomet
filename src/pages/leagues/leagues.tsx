@@ -6,7 +6,6 @@ import { LeaguesViewModel } from "./leaguesViewModel";
  */
 const Leagues: FC = () => {
   const {
-    navigate,
     league,
     handleAddLeague,
     handleDeleteLeague,
@@ -17,7 +16,14 @@ const Leagues: FC = () => {
   } = LeaguesViewModel();
 
   return (
-    <div style={{ border: "purple 5px solid", width: "100%", height: "100%" }}>
+    <div
+      style={{
+        border: "purple 5px solid",
+        width: "100%",
+        height: "100%",
+        marginTop: "30%",
+      }}
+    >
       {dashboard.map((item, idx) => (
         <div className="dashboard_container_max_league" key={idx}>
           <div

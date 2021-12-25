@@ -28,15 +28,12 @@
       padding: 1rem;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: start;
       align-items: center;
 
       &_userInfo {
-        //position: absolute;
-        //top: 1rem;
-        text-align: center;
+        border: #ee7752 7px solid;
         font-weight: bold;
-        margin-bottom: 1rem;
         color: white;
       }
 
