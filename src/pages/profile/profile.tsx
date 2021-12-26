@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import { useSelector } from "react-redux";
 import { Outlet, useParams } from "react-router-dom";
+import { RadialChart } from "../../components";
 import { getPlayer } from "../../state-mgmt/store";
 
 /**
@@ -21,7 +22,7 @@ const Profile: FC = () => {
       <div> height : {player.height}</div>
       <div> league : {player.league}</div>
       <div> email : {player.email}</div>
-      <Outlet />
+      {/*<RadialChart />*/}
     </div>
   );
 };

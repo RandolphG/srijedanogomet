@@ -4,6 +4,7 @@ import playersReducer from "./players/slice";
 import teamsReducer from "./teams/slice";
 import leaguesReducer from "./leagues/slice";
 import dashboardReducer from "./dashboard/slice";
+import notificationReducer from "./notification/slice";
 
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { createBrowserHistory } from "history";
@@ -27,6 +28,7 @@ export const rootReducer = combineReducers({
   teams: teamsReducer,
   leagues: leaguesReducer,
   dashboard: dashboardReducer,
+  notifications: notificationReducer,
 });
 
 const epicMiddleware = createEpicMiddleware<
@@ -54,5 +56,6 @@ export * from "./teams";
 export * from "./players";
 export * from "./leagues";
 export * from "./dashboard";
+export * from "./notification";
 
 epicMiddleware.run(epics);

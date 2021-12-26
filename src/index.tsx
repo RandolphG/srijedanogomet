@@ -3,6 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { HashRouter as Router } from "react-router-dom";
 import { client } from "./client";
+import { Notifications } from "./components";
 import { store, history } from "./state-mgmt/store";
 import { Provider } from "react-redux";
 import { I18nextProvider } from "react-i18next";
@@ -16,6 +17,7 @@ ReactDOM.render(
     <Provider store={store}>
       {/*<ConnectedRouter history={history}>*/}
       <I18nextProvider i18n={i18next}>
+        <Notifications />
         <Router>
           <Routes />
         </Router>

@@ -9,6 +9,7 @@ import {
   ILeagues,
   Dashboard,
   ITeams,
+  INotifications,
   requestCurrentUserActionSuccess,
   requestLoginAction,
   requestLoginActionFailure,
@@ -22,6 +23,7 @@ export interface IState {
   teams: ITeams;
   leagues: ILeagues;
   dashboard: Dashboard;
+  notifications: INotifications;
   router: (
     history: History<RouterState<ISystemState>>
   ) => Reducer<RouterState<RouterState<ISystemState>>>;
@@ -69,8 +71,6 @@ export interface IPrivateRoute {
     | LazyExoticComponent<React.ComponentType<any>>;
   path: string;
 }
-
-export type TShowModal = Boolean;
 
 export type TShowSignInModal = Boolean;
 

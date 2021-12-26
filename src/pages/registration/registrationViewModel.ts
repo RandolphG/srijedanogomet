@@ -1,7 +1,12 @@
 import React, { ChangeEvent, SelectHTMLAttributes, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getDashboard, Player, requestAddPlayer } from "../../state-mgmt/store";
+import {
+  getDashboard,
+  Player,
+  requestAddNotification,
+  requestAddPlayer,
+} from "../../state-mgmt/store";
 
 export const RegistrationViewModel = () => {
   let navigate = useNavigate();
@@ -20,8 +25,8 @@ export const RegistrationViewModel = () => {
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) {
     event.preventDefault();
-    console.log("submit");
     dispatch(requestAddPlayer(playerInfo));
+    dispatch(requestAddNotification({ title: playerInfo.userName }));
 
     /*fetch("http://localhost:8000/graphql", {
       method: "POST",
