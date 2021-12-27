@@ -6,6 +6,10 @@ import leaguesReducer from "./leagues/slice";
 import dashboardReducer from "./dashboard/slice";
 import notificationReducer from "./notification/slice";
 
+/* persist the data */
+import { persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { createBrowserHistory } from "history";
 import { combineEpics, createEpicMiddleware } from "redux-observable";
@@ -31,18 +35,26 @@ export const rootReducer = combineReducers({
   notifications: notificationReducer,
 });
 
+const persistConfig = {
+  key: "root",
+  storage,
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
 const epicMiddleware = createEpicMiddleware<
-  finalActions, // input actions
-  finalActions, // output actions
+  finalActions /* input actions */,
+  finalActions /* output actions */,
   RootState
 >();
 
 function configureAppStore(initialState?: any) {
-  // configure middlewares
+  /* configure middlewares */
   const middlewares = [routerMiddleware(history), epicMiddleware];
-  // create store
+  /* create store */
   return configureStore<RootState>({
-    reducer: rootReducer,
+    //@ts-ignore
+    reducer: persistedReducer,
     //@ts-ignore
     middleware: middlewares,
     preloadedState: initialState,

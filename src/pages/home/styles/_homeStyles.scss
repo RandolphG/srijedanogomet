@@ -8,7 +8,6 @@
   width: 100%;
   color: white;
 
-
   &_container {
     box-sizing: border-box;
     border: #23d5ab 1px solid;
@@ -23,45 +22,44 @@
       position: relative;
       overflow: hidden;
       border: #ee7752 7px solid;
-      height: 60%;
+      height: 100%;
       width: 80%;
       padding: 3rem;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
 
       &_title {
-        position: absolute;
-        top: 1rem;
         text-align: center;
         font-weight: bold;
         margin-bottom: 1rem;
       }
 
-      &_active {
-        position: absolute;
-        top: 2rem;
-        text-align: center;
-        font-weight: bold;
-        margin-bottom: 1rem;
-        @media only screen and (min-width: 1200px) {
-          top: 7rem;
-        }
+      &_logoContainer{
+        width: 90%;
+        height: 55%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: lightgreen 6px solid;
+        border-radius: .5rem;
       }
 
-
-      &_button {
+      &_buttons{
+        display: flex;
         width: 100%;
-        font-size: 1.5rem;
-        font-family: "exoMediumItalic", sans-serif;
-        border-radius: .25rem;
-        padding: 0 .5rem;
-        background: white;
-        color: grey;
-        margin-top: 1rem;
-        @media only screen and (min-width: 1200px) {
-          font-size: 5rem;
+        &_button {
+          width: 100%;
+          font-size: 1.5rem;
+          font-family: "exoMediumItalic", sans-serif;
+          border-radius: .25rem;
+          padding: 1rem;
+          background: white;
+          color: grey;
+          @media only screen and (min-width: 1200px) {
+            font-size: 5rem;
+          }
         }
       }
     }

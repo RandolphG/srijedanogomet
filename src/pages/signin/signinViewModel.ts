@@ -1,10 +1,8 @@
 import React, { ChangeEvent, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import {
-  requestLoginAction,
-  requestSetUserNameAction,
-} from "../../state-mgmt/store";
+import { loginUser } from "../../services";
+import { requestAddNotification } from "../../state-mgmt/store";
 
 interface SignInViewModelProps {
   handleSubmit: (
@@ -47,42 +45,10 @@ export const SigninViewModel = () => {
   ) {
     event.preventDefault();
     console.log(`\nplayerInfo`, playerInfo);
-    fetch("http://localhost:8000/graphql", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(requestBody),
-    })
-      .then((response) => {
-        if (response.status !== 200 && response.status !== 201) {
-          console.log(`\nFailure!`, response);
-          throw new Error("Failed");
-        }
-        console.log(`\nSuccess!`, response);
-        return response.json();
-      })
-      .then(({ data }) => {
-        const { login } = data;
-        console.log(`\nlogin`, login);
-
-        if (login.token) {
-          dispatch(requestSetUserNameAction(playerInfo));
-          dispatch(
-            requestLoginAction({
-              isLoggedIn: {
-                userId: login.userId,
-                status: true,
-                token: login.token,
-              },
-            })
-          );
-          navigate("/dashboard");
-        }
-      })
-      .catch((err) => {
-        console.log(`\nError Signing In: `, err);
-      });
+    loginUser(requestBody, dispatch, playerInfo, navigate).then((r) => {
+      console.log(`LOGIN RESULT`, r);
+      dispatch(requestAddNotification({ title: r }));
+    });
   }
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {

@@ -1,6 +1,7 @@
-import React, { ChangeEvent, SelectHTMLAttributes, useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { registerUser } from "../../services";
 import {
   getDashboard,
   Player,
@@ -21,31 +22,35 @@ export const RegistrationViewModel = () => {
     password: "password",
   });
 
+  const requestBody = {
+    query: `
+      mutation {
+        createUser(userInput: {
+          userName: "${playerInfo.userName}",
+          height: "${playerInfo.height}",
+          email: "${playerInfo.email}",
+          password: "${playerInfo.password}"}) {
+            _id
+            userName
+            email
+          }
+      }
+    `,
+  };
+
   function handleSubmit(
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) {
     event.preventDefault();
-    dispatch(requestAddPlayer(playerInfo));
-    dispatch(requestAddNotification({ title: playerInfo.userName }));
 
-    /*fetch("http://localhost:8000/graphql", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(requestBody),
-    })
-      .then((response) => {
-        if (response.status !== 200 && response.status !== 201) {
-          throw new Error("Failed");
-        }
-        console.log(`response`, response);
-        return response.json();
-      })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((err) => console.log(err));*/
+    registerUser(requestBody).then((data: any) => {
+      console.log(`DATA : `, data);
+      if (data) {
+        dispatch(requestAddPlayer(playerInfo));
+        dispatch(requestAddNotification({ title: playerInfo.userName }));
+        navigate("/signIn");
+      }
+    });
   }
 
   function handleSelectOnChange(event: ChangeEvent<HTMLSelectElement>) {
@@ -76,22 +81,6 @@ export const RegistrationViewModel = () => {
   function showPassword() {
     setInputType(inputType === "text" ? "password" : "text");
   }
-
-  const requestBody = {
-    query: `
-      mutation {
-        createUser(userInput: {
-          userName: "${playerInfo.userName}",
-          height: "${playerInfo.height}",
-          email: "${playerInfo.email}",
-          password: "${playerInfo.password}"}) {
-            _id
-            userName
-            email
-          }
-      }
-    `,
-  };
 
   return {
     dashboard,

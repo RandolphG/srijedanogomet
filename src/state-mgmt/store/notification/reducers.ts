@@ -8,9 +8,9 @@ export const reducers = {
     action: PayloadAction<INotificationsPayload>
   ) => {
     const { title } = action.payload;
-    const message = `${title} added`;
+    const message = `${title}`;
 
-    console.log(`ADDED: ${message}`);
+    console.log(`NOTIFICATION : ${message}`);
 
     return {
       ...state,

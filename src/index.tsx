@@ -10,17 +10,23 @@ import { I18nextProvider } from "react-i18next";
 import { ConnectedRouter } from "connected-react-router";
 import Routes from "./routing";
 import i18next from "i18next";
+import { PersistGate } from "redux-persist/integration/react";
+import { persistStore } from "redux-persist";
 import "./theme/_style.scss";
+
+let persists = persistStore(store);
 
 ReactDOM.render(
   <ApolloProvider client={client}>
     <Provider store={store}>
       {/*<ConnectedRouter history={history}>*/}
       <I18nextProvider i18n={i18next}>
-        <Notifications />
-        <Router>
-          <Routes />
-        </Router>
+        <PersistGate loading={null} persistor={persists}>
+          <Notifications />
+          <Router>
+            <Routes />
+          </Router>
+        </PersistGate>
       </I18nextProvider>
       {/*</ConnectedRouter>*/}
     </Provider>
