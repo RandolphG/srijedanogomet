@@ -1,87 +1,77 @@
 
 .notification {
-  border: #ee7752 solid 6px;
-  pointer-events: none;
-  box-sizing: border-box;
   position: absolute;
-  right: 5rem;
-  bottom: 4rem;
+  box-sizing: border-box;
+  border: #ee7752 1px solid;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  width: 650px;
-  height: 80%;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
   z-index: 1000;
-  margin-bottom: 1rem;
-  overflow: hidden;
+  color: black;
+  pointer-events: none;
 
-  &_list {
-    position: relative;
+  @media only screen and (min-width: 1200px) {
+    font-size: 5rem;
+  }
+
+  &_container {
+    box-sizing: border-box;
+    border: #90ee90 7px solid;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    justify-content: flex-end;
-    box-sizing: border-box;
-    list-style: none;
-    height: 100%;
-    width: 100%;
+    height: 90%;
+    width: 90%;
 
-    &_item {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    &_list {
+      border: #ee7752 7px solid;
       position: relative;
-      border-radius: 8px;
-      background-color: white;
-      height: 264px;
-      width: 600px;
-      margin-bottom: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: flex-end;
+      box-sizing: border-box;
+      list-style: none;
+      height: 100%;
+      width: 100%;
 
-      &_message {
-        //background-color: #3b5999;
-        //color: #3b5999;
-      }
+      &_item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        border-radius: 8px;
+        background-color: white;
+        height: 264px;
+        width: 600px;
+        margin-bottom: 1rem;
 
-      &_close {
-        border: none;
-        outline: none;
-        position: absolute;
-        top: 6px;
-        right: 0;
-        height: 32px;
-        background-color: transparent;
-
-        button {
-          outline: none;
-          -webkit-appearance: none;
-          cursor: pointer;
+        &_message {
+          //background-color: #3b5999;
+          //color: #3b5999;
         }
+
+        &_close {
+          border: none;
+          outline: none;
+          position: absolute;
+          top: 6px;
+          right: 0;
+          height: 32px;
+          background-color: transparent;
+
+          button {
+            outline: none;
+            -webkit-appearance: none;
+            cursor: pointer;
+          }
+        }
+
+        //box-shadow: 0 3px 3px rgba(0, 0, 0, 0.32), 0 3px 3px rgba(0, 0, 0, 0.34);
       }
-
-      box-shadow: 0 3px 3px rgba(0, 0, 0, 0.32), 0 3px 3px rgba(0, 0, 0, 0.34);
-
     }
-  }
-
-  /* Extra small devices (phones, 600px and down) */
-  @media only screen and (max-width: 600px) {
-  }
-
-  /* Small devices (portrait tablets and large phones, 600px and up) */
-  @media only screen and (min-width: 600px) {
-  }
-
-  /* Medium devices (landscape tablets, 768px and up) */
-  @media only screen and (min-width: 768px) {
-  }
-
-  /* Large devices (laptops/desktops, 992px and up) */
-  @media only screen and (min-width: 992px) {
-  }
-
-  /* Extra large devices (large laptops and desktops, 1200px and up) */
-  @media only screen and (min-width: 1200px) {
-    font-size: 5em;
   }
 }

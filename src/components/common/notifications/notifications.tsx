@@ -1,3 +1,4 @@
+// @ts-nocheck
 import * as React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
@@ -43,38 +44,37 @@ const Notifications = () => {
   return (
     <ErrorBoundary>
       <div className="notification">
-        <ul className="notification_list">
-          <AnimatePresence initial={false}>
-            {notifications &&
-              notifications.map(
-                // @ts-ignore
-
-                (notification: { message: string }, idx: number) => {
-                  console.log(`MESSAGE: `, notification);
-                  remove(notification.message);
-                  return (
-                    <motion.li
-                      className="notification_list_item"
-                      key={idx}
-                      // positionTransition
-                      initial={{ opacity: 0, y: 50, scale: 0.3 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{
-                        x: 50,
-                        opacity: 0,
-                        transition: { duration: 0.2 },
-                      }}
-                    >
-                      <span className="notification_list_item_message">
-                        {notification.message}
-                      </span>
-                      {/*<NotificationCloseButton close={() => remove(idx)} />*/}
-                    </motion.li>
-                  );
-                }
-              )}
-          </AnimatePresence>
-        </ul>
+        <div className="notification_container">
+          <ul className="notification_container_list">
+            <AnimatePresence initial={false}>
+              {notifications &&
+                notifications.map(
+                  (notification: { message: string }, idx: number) => {
+                    console.log(`MESSAGE: `, notification);
+                    remove(notification.message);
+                    return (
+                      <motion.li
+                        className="notification_container_list_item"
+                        key={idx}
+                        initial={{ opacity: 0, y: 50, scale: 0.3 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{
+                          x: 50,
+                          opacity: 0,
+                          transition: { duration: 0.2 },
+                        }}
+                      >
+                        <span className="notification_container_list_item_message">
+                          {notification.message}
+                        </span>
+                        <NotificationCloseButton close={() => remove(idx)} />
+                      </motion.li>
+                    );
+                  }
+                )}
+            </AnimatePresence>
+          </ul>
+        </div>
       </div>
     </ErrorBoundary>
   );

@@ -1,3 +1,4 @@
+const path = require("path");
 const express = require("express");
 const cors = require("cors");
 const graphqlHttp = require("express-graphql").graphqlHTTP;
@@ -38,6 +39,10 @@ app.use(
 );
 
 app.use(express.static("build"));
+
+app.get("*", (request, response) => {
+  response.sendFile(path.resolve(__dirname, "build", "index.html"));
+});
 
 const uri = `mongodb+srv://nogomet:ASDFGFDSA123@cluster0.f466e.gcp.mongodb.net/test?retryWrites=true&w=majority`;
 
