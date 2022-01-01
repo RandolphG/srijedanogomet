@@ -1,6 +1,5 @@
-const Article = require("../models/articles");
+const mongodb = require("mongodb");
 const User = require("../models/users");
-const Event = require("../models/event");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
@@ -54,82 +53,6 @@ module.exports = {
         throw err;
       });
   },
-  articles: async () => {
-    try {
-      const articlesFetched = await Article.find();
-      return articlesFetched.map((article) => {
-        return {
-          ...article._doc,
-          _id: article.id,
-          createdAt: new Date(article._doc.createdAt).toISOString(),
-        };
-      });
-    } catch (error) {
-      throw error;
-    }
-  },
-  createArticle: async (args) => {
-    try {
-      const { title, body } = args.article;
-      const article = new Article({
-        title,
-        body,
-      });
-      const newArticle = await article.save();
-      return { ...newArticle._doc, _id: newArticle.id };
-    } catch (error) {
-      throw error;
-    }
-  },
-  events: () => {
-    return Event.find()
-      .then((events) => {
-        return events.map((event) => {
-          return { ...event._doc };
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-        throw err;
-      });
-  },
-  createEvent: async (args, request) => {
-    if (!request.isAuth) {
-      throw new Error("Unauthorized");
-    }
-    try {
-      const { userName } = args.event;
-      const event = new Event({
-        userName,
-        creator: request.userId,
-      });
-
-      let createdEvent;
-      const newEvent = await event
-        .save()
-        .then((result) => {
-          createdEvent = { ...result._doc, _id: result._doc._id.toString() };
-          return User.findById("43534tdfgdgrt");
-        })
-        .then((user) => {
-          if (!user) {
-            throw new Error("User does not exist.");
-          }
-          user.createdEvents.push(event);
-          return user.save();
-        })
-        .then((result) => {
-          return createdEvent;
-        })
-        .catch((err) => {
-          throw err;
-        });
-
-      return { ...newEvent._doc, _id: newEvent.id };
-    } catch (error) {
-      throw error;
-    }
-  },
   login: async ({ userName, password }) => {
     try {
       const user = await User.findOne({ userName: userName });
@@ -147,6 +70,34 @@ module.exports = {
       throw error;
     }
   },
+  /*
+  addFile: async (_parent, { file }) => {
+    const { stream, filename, mimetype, encoding } = await file;
+    const bucket = new mongodb.GridFSBucket(db._db);
+    const uploadStream = bucket.openUploadStream(filename);
+
+    await new Promise((resolve, reject) => {
+      stream.pipe(uploadStream).on("error", reject).on("finish", resolve);
+    });
+
+    return { _id: uploadStream.id, filename, mimetype, encoding };
+*/
+
+  /*if (!request.isAuth) {
+      throw new Error("Unauthorized");
+    }
+    try {
+      const { file } = args;
+      const newFile = new File({
+        file,
+        creator: request.userId,
+      });
+      const createdFile = await newFile.save();
+      return { ...createdFile._doc, _id: createdFile.id };
+    } catch (error) {
+      throw error;
+    }
+  },*/
 };
 
 /* validate */

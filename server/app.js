@@ -9,6 +9,8 @@ const isAuth = require("./middleware/isAuth");
 const app = express();
 const host = "0.0.0.0";
 const port = process.env.PORT || 8000;
+require("dotenv").config();
+const imageRoutes = require("./routes/image");
 
 app.use(cors());
 
@@ -29,6 +31,8 @@ app.use((request, response, next) => {
 
 app.use(isAuth);
 
+// app.use("api/image", imageRoutes);
+
 app.use(
   "/graphql",
   graphqlHttp({
@@ -44,11 +48,12 @@ app.get("*", (request, response) => {
   response.sendFile(path.resolve(__dirname, "build", "index.html"));
 });
 
-const uri = `mongodb+srv://nogomet:ASDFGFDSA123@cluster0.f466e.gcp.mongodb.net/test?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.f466e.gcp.mongodb.net/${process.env.MONGO_DB}?retryWrites=true&w=majority`;
 
 const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  useCreateIndex: true,
 };
 
 mongoose

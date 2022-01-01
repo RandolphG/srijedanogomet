@@ -1,7 +1,6 @@
 const { buildSchema } = require("graphql");
 
 module.exports = buildSchema(`
-  
     type User {
         _id: ID!
         userName: String!
@@ -22,6 +21,14 @@ module.exports = buildSchema(`
         userName:String!
         email: String!
         password: String!
+    }
+    
+    type File {
+        _id: ID!
+        path: String!
+        filename: String!
+        mimetype: String!
+        encoding: String!
     }
 
     input LoginInput {

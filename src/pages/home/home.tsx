@@ -21,13 +21,18 @@ const Home: FC = () => {
     },
   };
 
+  const Title = () => <div className="home_container_max_title">NOGOMET</div>;
+
+  const Logo = () => (
+    <div className="home_container_max_logoContainer">LOGO</div>
+  );
   return (
     <AnimatePresence exitBeforeEnter>
       <div className="home">
         <motion.div key="home" className="home_container" {...motionSettings}>
           <div className="home_container_max">
-            <div className="home_container_max_title">NOGOMET</div>
-            <div className="home_container_max_logoContainer">LOGO</div>
+            <Title />
+            <Logo />
             <div className="home_container_max_buttons">
               <button
                 className="home_container_max_buttons_button"
