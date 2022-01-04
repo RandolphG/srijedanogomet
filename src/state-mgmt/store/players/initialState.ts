@@ -11,6 +11,7 @@ export const initialState: IPlayers = {
       height: "183cm",
       team: "team-2",
       league: "srijeda-nogomet",
+      attendance: true,
       isInEditMode: false,
     },
     vedran: {
@@ -21,6 +22,7 @@ export const initialState: IPlayers = {
       height: "173cm",
       team: "team-2",
       league: "srijeda-nogomet",
+      attendance: false,
       isInEditMode: false,
     },
     marija: {
@@ -31,6 +33,7 @@ export const initialState: IPlayers = {
       height: "173cm",
       team: "team-2",
       league: "srijeda-nogomet",
+      attendance: true,
       isInEditMode: false,
     },
     teslim: {
@@ -41,6 +44,7 @@ export const initialState: IPlayers = {
       height: "163cm",
       team: "team-2",
       league: "srijeda-nogomet",
+      attendance: false,
       isInEditMode: false,
     },
     darko: {
@@ -51,6 +55,7 @@ export const initialState: IPlayers = {
       height: "180cm",
       team: "team-2",
       league: "srijeda-nogomet",
+      attendance: true,
       isInEditMode: false,
     },
     sokre: {
@@ -61,6 +66,7 @@ export const initialState: IPlayers = {
       height: "153cm",
       team: "team-2",
       league: "srijeda-nogomet",
+      attendance: false,
       isInEditMode: false,
     },
     kreso: {
@@ -71,6 +77,7 @@ export const initialState: IPlayers = {
       height: "151cm",
       team: "team-2",
       league: "srijeda-nogomet",
+      attendance: false,
       isInEditMode: false,
     },
     dominick: {
@@ -81,6 +88,7 @@ export const initialState: IPlayers = {
       height: "166cm",
       team: "team-2",
       league: "srijeda-nogomet",
+      attendance: false,
       isInEditMode: false,
     },
     filip: {
@@ -91,6 +99,7 @@ export const initialState: IPlayers = {
       height: "176cm",
       team: "team-2",
       league: "srijeda-nogomet",
+      attendance: false,
       isInEditMode: false,
     },
     pavao: {
@@ -101,6 +110,7 @@ export const initialState: IPlayers = {
       height: "199cm",
       team: "team-2",
       league: "srijeda-nogomet",
+      attendance: false,
       isInEditMode: false,
     },
     rido: {
@@ -111,6 +121,7 @@ export const initialState: IPlayers = {
       height: "169cm",
       team: "team-2",
       league: "srijeda-nogomet",
+      attendance: false,
       isInEditMode: false,
     },
     chris: {
@@ -121,6 +132,7 @@ export const initialState: IPlayers = {
       height: "184cm",
       team: "team-2",
       league: "srijeda-nogomet",
+      attendance: false,
       isInEditMode: false,
     },
   },

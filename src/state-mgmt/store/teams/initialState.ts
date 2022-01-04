@@ -3,9 +3,10 @@ import { ITeams } from "./types";
 export const initialState: ITeams = {
   "team-1": {
     id: "team-1",
-    title: "Team-1",
+    title: "Team-A",
     players: [
       "randi",
+      "marija",
       "pavao",
       "teslim",
       "rido",

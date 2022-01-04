@@ -40,7 +40,7 @@ const Dashboard = () => {
           <div className="dashboard_container_max_userInfo">
             Signed in as : {system.system.userName}
           </div>
-          <DropdownMenu items={menuItems} />
+          {/*<DropdownMenu items={menuItems} />*/}
           <Outlet />
         </div>
       </div>

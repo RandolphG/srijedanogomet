@@ -1,31 +1,33 @@
 import React, { FC, Fragment, memo } from "react";
-import { useParams } from "react-router-dom";
 import { Checkbox } from "../../components/";
 import { LineUpViewModel } from "./lineUpViewModel";
 import "./styles/_lineUpStyles.scss";
 
 /**
  * LineUp
+ * re-render stackoverflow :
+ * https://stackoverflow.com/questions/41004631/trace-why-a-react-component-is-re-rendering
  */
 const LineUp: FC = memo(() => {
   const {
+    id,
     lineUpState,
-    loading,
-    data,
+    // loading,
     players,
     toggleSelection,
     navigateToProfile,
     navigate,
+    currentPlayer,
   } = LineUpViewModel();
 
   /* loading default*/
   const Loading = () => (
     <Fragment>
-      {loading && (
+      {/*      {loading && (
         <div className="lineUp_container">
           <div>... LineUp</div>
         </div>
-      )}
+      )}*/}
     </Fragment>
   );
 
@@ -53,7 +55,6 @@ const LineUp: FC = memo(() => {
   const LineUpContainer = ({ children }: any) => (
     <div className="dashboard_container">{children}</div>
   );
-  let { id } = useParams<"id">();
 
   /* list of players */
   const Players = () => (
@@ -74,19 +75,24 @@ const LineUp: FC = memo(() => {
       </div>
       <div className="lineUp_container_max_players">
         {players &&
-          players.map((user: any, idx: number) => (
-            <span
-              key={`player-${idx}`}
-              className="lineUp_container_max_players_player"
-            >
-              <Checkbox
-                selected={lineUpState.selection.includes(user.userName)}
-                onClick={() => toggleSelection(user.userName)}
-                label={user}
-              />
-              <ProfileButton user={user} />
-            </span>
-          ))}
+          players.map((user: any, idx: number) => {
+            const name = currentPlayer[user!.toString()];
+
+            return (
+              <span
+                key={`player-${idx}`}
+                className="lineUp_container_max_players_player"
+              >
+                <Checkbox
+                  // selected={lineUpState.selection.includes(user.userName)}
+                  selected={name.attendance}
+                  onClick={() => toggleSelection(user.userName)}
+                  label={user}
+                />
+                <ProfileButton user={user} />
+              </span>
+            );
+          })}
       </div>
       <LogOutButton />
     </div>

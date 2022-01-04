@@ -16,6 +16,7 @@ export interface Player {
   height: string;
   team?: string;
   league: string;
+  attendance: boolean;
   isInEditMode?: boolean;
 }
 

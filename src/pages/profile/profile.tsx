@@ -10,9 +10,6 @@ const Profile: FC = () => {
   let { id } = useParams<"id">();
   const players = useSelector(getPlayer);
 
-  console.log(`PLAYERS`, players);
-  console.log(`ID`, id!.toString());
-  console.log(`PLAYERS[randi]`, players[id!.toString()]);
   const player = players[id!.toString()];
   return (
     <div style={{ color: "white", fontSize: "5rem" }}>

@@ -20,6 +20,7 @@ export const RegistrationViewModel = () => {
     height: "cm",
     email: "@poplogics.com",
     password: "password",
+    attendance: false,
   });
 
   const requestBody = {
